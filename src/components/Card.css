@@ -1,0 +1,66 @@
+.card-group {
+    display: flex; /* Aligns cards horizontally */
+    gap: 30px; /* Adds space between cards */
+    justify-content: center; /* Centers cards */
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    margin: 30px auto; /* Adds spacing around the card group */
+  }
+  
+  .card {
+    flex: none; /* Prevents dynamic resizing by flex */
+    width: 450px; /* Reduces card width */
+    height: 500px; /* Reduces card height */
+    border-radius: 20px; /* Keeps rounded corners */
+    overflow: hidden; /* Ensures inner content respects rounded corners */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Adds shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Adds hover effects */
+    position: relative; /* Enables positioning inside the card */
+  }
+  
+  .card img {
+    object-fit: cover; /* Ensures images fill the card evenly */
+    height: 75%; /* Increases image height relative to the card */
+    width: 100%; /* Ensures image spans full card width */
+  }
+  
+  .card-body {
+    padding: 15px; /* Slightly reduces inner padding */
+    height: 25%; /* Decreases the space allocated for text */
+  }
+  
+  .card-body h5 {
+    font-size: 1.25rem; /* Adjusts title size */
+    margin-bottom: 10px;
+  }
+  
+  .card-body p {
+    font-size: 0.9rem; /* Slightly reduces font size for the description */
+  }
+  
+  /* Explore Button on Image */
+  .card .explore-button {
+    position: absolute;
+    bottom: 10%; /* Adjust to position inside the image */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 123, 255, 0.8); /* Semi-transparent button background */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    z-index: 5;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .card .explore-button:hover {
+    background-color: rgba(0, 123, 255, 1); /* Fully opaque on hover */
+    transform: scale(1.1); /* Slight zoom on hover */
+  }
+  
+  .card:hover {
+    transform: scale(1.05); /* Subtle zoom effect */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+  }
+  
