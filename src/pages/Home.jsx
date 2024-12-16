@@ -3,9 +3,10 @@ import Header from "../components/Header";
 import HomePageImage from "../assets/HomePage_image.jpg"; // Ensure correct path and file extension
 import Hotel1 from "../assets/n1.webp";
 import Hotel2 from "../assets/n4.jpg";
-import Hotel3 from "../assets/n3.webp";
+import Hom from "../assets/home.jpg";
 import './Home.css';
 import Card from "../components/Card";
+import Service from "../components/Service";
 
 const Home = () => {
   return (
@@ -13,7 +14,7 @@ const Home = () => {
       <Header />
       {/* Image Section */}
       <div className="image-container">
-        <img src={Hotel1} alt="Welcome to the site" />
+        <img src={Hom} alt="Welcome to the site" />
         <div className="search-bar-container">
           <h2>Book Perfect Stay for Your Vacation</h2>
           
@@ -26,6 +27,9 @@ const Home = () => {
         <h3 className="section-title">Our Top Rated & Highly Visited Hotels </h3>
         <Card />
       </div>
+
+
+      <Service/>
 
       
 
