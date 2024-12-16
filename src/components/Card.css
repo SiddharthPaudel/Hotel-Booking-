@@ -14,6 +14,7 @@
     overflow: hidden; /* Ensures inner content respects rounded corners */
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Adds shadow for depth */
     position: relative; /* Enables positioning of the button inside the card */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
   .card img {
@@ -39,7 +40,7 @@
   /* Explore Button on Image */
   .card .explore-button {
     position: absolute;
-    bottom: 20px; /* Adjust button position within the image */
+    bottom: 45px; /* Adjust button position within the image */
     left: 50%;
     transform: translateX(-50%);
     background-color: rgba(0, 123, 255, 0.8); /* Semi-transparent button background */

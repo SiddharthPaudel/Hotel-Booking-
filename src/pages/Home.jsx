@@ -27,6 +27,8 @@ const Home = () => {
         <Card />
       </div>
 
+      
+
 
       
 
