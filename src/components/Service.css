@@ -21,7 +21,7 @@
   .service-card {
     position: relative;
     width: 22%; /* Adjust width to have 4 images in a row */
-    height: 350px;
+    height: 365px;
     overflow: hidden;
     border-radius: 15px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
