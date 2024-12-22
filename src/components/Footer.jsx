@@ -15,7 +15,7 @@ const Footer =()=>{
     </div>
 
     <div className="col mb-3">
-      <h5>Section</h5>
+      <h5>Social</h5>
       <ul className="nav flex-column">
         <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-body-secondary">Home</a></li>
         <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-body-secondary">Features</a></li>
@@ -25,7 +25,7 @@ const Footer =()=>{
     </div>
 
     <div className="col mb-3">
-      <h5>Section</h5>
+      <h5>About</h5>
       <ul className="nav flex-column">
         <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-body-secondary">Home</a></li>
         <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-body-secondary">Features</a></li>
@@ -35,7 +35,7 @@ const Footer =()=>{
     </div>
 
     <div className="col mb-3">
-      <h5>Section</h5>
+      <h5>Social Media</h5>
       <ul className="nav flex-column">
         <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-body-secondary">Home</a></li>
         <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-body-secondary">Features</a></li>

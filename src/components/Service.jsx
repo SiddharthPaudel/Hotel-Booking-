@@ -59,6 +59,13 @@ const Service = () => {
           </div>
         </div>
       </div>
+
+      {/* <section className="cta-section">
+        <h2>Ready to Plan Your Next Stay?</h2>
+        <p>Discover the best hotels and experiences with [Your App Name].</p>
+        <button className="cta-button">Explore Now</button>
+      </section> */}
+    
     </div>
   );
 };
