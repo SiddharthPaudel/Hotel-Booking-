@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink,Link } from "react-router-dom";
+import Home from "../pages/Home";
 
 const Header = () => {
   return (
@@ -21,25 +22,30 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <Link to="/features" className="nav-link px-2">
+              <NavLink to="/hotels" className="nav-link px-2">
                 Hotels
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="/pricing" className="nav-link px-2">
-                Offers
-              </Link>
+            <Link
+              to="/service"
+              smooth={true}
+              duration={500}
+              className="nav-link px-2"
+            >
+              Service
+            </Link>
             </li>
             <li>
-              <Link to="/faqs" className="nav-link px-2">
+              <Link to="#about" className="nav-link px-2">
                 AboutUs
               </Link>
             </li>
-            <li>
-              <Link to="/about" className="nav-link px-2">
+            {/* <li>
+              <Link to="/a" className="nav-link px-2">
                 About
               </Link>
-            </li>
+            </li> */}
           </ul>
 
           <div className="col-md-3 text-end">

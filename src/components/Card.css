@@ -10,11 +10,12 @@
     flex: none; /* Prevents dynamic resizing by flex */
     width: 450px; /* Reduces card width */
     height: 500px; /* Reduces card height */
-    border-radius: 20px; /* Keeps rounded corners */
+    border-radius: 50px; /* Keeps rounded corners */
     overflow: hidden; /* Ensures inner content respects rounded corners */
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Adds shadow for depth */
     position: relative; /* Enables positioning of the button inside the card */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+   
   }
   
   .card img {
@@ -26,6 +27,7 @@
   .card-body {
     padding: 15px; /* Slightly reduces inner padding */
     height: 25%; /* Decreases the space allocated for text */
+   
   }
   
   .card-body h5 {

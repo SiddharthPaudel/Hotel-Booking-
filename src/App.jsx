@@ -2,7 +2,11 @@ import './App.css'
 import AboutUs from './components/AboutUs';
 import Service from './components/Service';
 import Home from './pages/Home'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import Login from './pages/Login';
+
+import SignUp from './pages/SignUp';
+import Card from './components/Card';
 
 function App() {
 
@@ -10,28 +14,16 @@ function App() {
   return (
     <Router>
     <div>
-      {/* Navigation */}
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About Us</Link>
-          </li>
-          <li>
-            <Link to="/contact">Contact</Link>
-          </li>
-        </ul>
-      </nav>
+    
 
       {/* Routes */}
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/hotels" element={<Card/>} />
         <Route path="/about" element={<AboutUs/>} />
-        <Route path="/contact" element={<Service/>} />
-        <Route path="/contact" element={<Service/>} />
-        <Route path="/contact" element={<Service/>} />
+        <Route path="/service" element={<Service/>} />
+        <Route path="/login" element={<Login/>} />
+        <Route path="/signup" element={<SignUp/>} />
       </Routes>
     </div>
   </Router>
