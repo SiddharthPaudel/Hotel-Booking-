@@ -4,6 +4,7 @@
     justify-content: center; /* Centers cards */
     flex-wrap: wrap; /* Allows wrapping on smaller screens */
     margin: 30px auto; /* Adds spacing around the card group */
+    font-family: 'Nunito', sans-serif; 
   }
   
   .card {

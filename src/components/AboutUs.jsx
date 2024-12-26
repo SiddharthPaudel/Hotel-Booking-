@@ -6,7 +6,13 @@ import Laptop from "../assets/Laptop.jpg";
 const AboutUs = () => {
   return (
     <div className="about-us-container">
-      {/* About Us Section */}
+      {/* What We Offer Section */}
+      <section className="offer-section">
+        <h2 className="offer-title">What We Are</h2>
+       
+      </section>
+
+      {/* About Section with Image and Text */}
       <section className="about-section">
         <div className="about-image">
           <img
@@ -16,16 +22,15 @@ const AboutUs = () => {
           />
         </div>
         <div className="about-text">
-          <h2>Who We Are</h2>
+         
           <p>
-            QuickStay is dedicated to making hotel
-            booking effortless and enjoyable. With a wide selection of
-            accommodations and a user-friendly interface, we ensure that every
-            traveler finds their ideal stay.
+            QuickStay is dedicated to making hotel booking effortless and
+            enjoyable. With a wide selection of accommodations and a
+            user-friendly interface, we ensure that every traveler finds their
+            ideal stay.
           </p>
         </div>
       </section>
-
 
       {/* Footer Call-to-Action */}
       <section className="cta-section">

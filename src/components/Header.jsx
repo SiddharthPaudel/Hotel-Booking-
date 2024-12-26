@@ -1,11 +1,12 @@
 import React from "react";
 import { NavLink,Link } from "react-router-dom";
 import Home from "../pages/Home";
+import './Header.css'
 
 const Header = () => {
   return (
     <>
-      <div className="container">
+      <div className="header-container">
         <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
           <div className="col-md-3 mb-2 mb-md-0">
             <Link to="/" className="d-inline-flex link-body-emphasis text-decoration-none">

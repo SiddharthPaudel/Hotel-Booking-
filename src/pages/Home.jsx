@@ -9,8 +9,6 @@ import AboutUs from "../components/AboutUs";
 const Home = () => {
   return (
     <>
-      <Header />
-
       {/* Image Section */}
       <div className="image-container">
         <img src={Hom} alt="Welcome to the site" />
@@ -24,7 +22,7 @@ const Home = () => {
         <h3 className="section-title">Our Top Rated & Highly Visited Hotels </h3>
         <Card />
       </div>
-
+ 
 
       <Service/>
       <AboutUs/>
@@ -34,7 +32,7 @@ const Home = () => {
 
       
 
-      <Footer />
+    
     </>
   );
 };

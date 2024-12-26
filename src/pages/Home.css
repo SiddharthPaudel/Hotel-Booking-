@@ -10,6 +10,7 @@ body{
     justify-content: center;
     padding-left: 3%; /* Adjusts the left gap */
     padding-right: 3%; /* Adjusts the right gap */
+    font-family: 'Nunito', sans-serif; 
   }
   
   .image-container img {
@@ -29,6 +30,7 @@ body{
     width: 80%; /* Adjust the width of the search bar */
     max-width: 800px; /* Max width to limit the search bar's width */
     z-index: 10;
+    
   }
   
   .search-bar-container h2 {
@@ -82,8 +84,9 @@ body{
   font-size: 1.8rem;
   color: #007EF2;
   font-weight: bold;
-  
+  font-family: 'Nunito', sans-serif;
 }
+
 
 /* Additional tweaks for card group */
 .card-group {

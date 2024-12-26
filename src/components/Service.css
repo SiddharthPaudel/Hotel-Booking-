@@ -1,13 +1,16 @@
 .services-container {
     text-align: center;
     padding: 40px;
+    font-family: 'Nunito', sans-serif; 
   }
+
   
   .services-title {
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 30px;
     color:#007EF2;
+
   }
   
   .services-grid {
