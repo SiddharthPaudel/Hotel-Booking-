@@ -66,4 +66,15 @@
     transform: scale(1.05); /* Subtle zoom effect */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
   }
+
+  .header {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .header-title {
+    font-size: 2rem;
+    color: #333;
+    font-weight: bold;
+  }
   

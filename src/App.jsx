@@ -30,7 +30,7 @@ function App() {
         </div>
 
         {/* Footer appears on all pages */}
-        <Footer />
+         <Footer />
       </div>
     </Router>
   );

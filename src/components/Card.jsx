@@ -8,6 +8,7 @@ import "./Card.css"; // Import the CSS file for styling
 const Card = () => {
   return (
     <>
+    
       <div className="card-group">
         <div className="card">
           <img src={Hotel1} className="card-img-top" alt="Hotel 1" />

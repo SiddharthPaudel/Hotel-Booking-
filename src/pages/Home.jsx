@@ -18,14 +18,11 @@ const Home = () => {
         </div>
       </div>
          {/* Card Section */}
-      <div className="card-section">
-        <h3 className="section-title">Our Top Rated & Highly Visited Hotels </h3>
-        <Card />
-      </div>
+    
  
 
-      <Service/>
       <AboutUs/>
+      <Service/>
 
       
 
