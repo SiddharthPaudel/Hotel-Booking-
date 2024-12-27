@@ -1,4 +1,4 @@
-import React from "react";
+
 import "./Quote.css"; // Link to the CSS file
 import plane from "../assets/plane.png"; // Import your local image
 import beach from "../assets/beach.png"; // Import any additional images

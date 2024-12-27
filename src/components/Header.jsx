@@ -1,45 +1,66 @@
 import React from "react";
-import { NavLink,Link } from "react-router-dom";
-import Home from "../pages/Home";
-import './Header.css'
+import { NavLink, Link } from "react-router-dom";
+import './Header.css';
+import logo from "../assets/new_web.png"; // Import your logo
 
 const Header = () => {
   return (
-    <>
-     <header class="p-3 mb-3 border-bottom header-container">
-    <div class="container">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
-          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-        </a>
-
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 link-secondary">Overview</a></li>
-          <li><a href="#" class="nav-link px-2 link-body-emphasis">Inventory</a></li>
-          <li><a href="#" class="nav-link px-2 link-body-emphasis">Customers</a></li>
-          <li><a href="#" class="nav-link px-2 link-body-emphasis">Products</a></li>
-        </ul>
-
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-          <input type="search" class="form-control" placeholder="Search..." aria-label="Search"/>
-        </form>
-
-        <div class="dropdown text-end">
-          <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle"/>
+    <header className="p-3 mb-3 border-bottom header-container">
+      <div className="container">
+        <div className="d-flex flex-wrap align-items-center justify-content-between">
+          
+          {/* Logo and Website Name Section */}
+          <a href="/" className="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+            <h1>
+              <span className="quick-text">Quick</span>
+              <span className="stay-text">Stay</span>
+            </h1>
           </a>
-          <ul class="dropdown-menu text-small">
-            <li><a class="dropdown-item" href="#">New project...</a></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-            <li><hr class="dropdown-divider"/></li>
-            <li><a class="dropdown-item" href="#">Sign out</a></li>
+
+          {/* Navigation Links */}
+          <ul className="nav col-12 col-lg-auto mb-2 justify-content-center mb-md-0">
+            <li>
+              <NavLink to="/" className="nav-link px-2 ">Home</NavLink>
+            </li>
+            <li>
+              <NavLink to="/inventory" className="nav-link px-2 ">AboutUs</NavLink>
+            </li>
+            <li>
+              <NavLink to="/customers" className="nav-link px-2 ">Service</NavLink>
+            </li>
+            <li>
+              <NavLink to="/products" className="nav-link px-2 ">Products</NavLink>
+            </li>
           </ul>
+
+          {/* Search and Login/Signup Buttons */}
+          <div className="d-flex flex-wrap align-items-center justify-content-end">
+            <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+              <input type="search" className="form-control" placeholder="Search..." aria-label="Search" />
+            </form>
+
+            <div className="d-flex">
+              <Link to="/login" className="btn btn-outline-primary me-2">Login</Link>
+              <Link to="/signup" className="btn btn-primary">Sign Up</Link>
+            </div>
+          </div>
+
+          {/* Profile Dropdown */}
+          {/* <div className="dropdown text-end">
+            <a href="#" className="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" className="rounded-circle" />
+            </a>
+            <ul className="dropdown-menu text-small ">
+              <li><a className="dropdown-item" href="#">New project...</a></li>
+              <li><a className="dropdown-item" href="#">Settings</a></li>
+              <li><a className="dropdown-item" href="#">Profile</a></li>
+              <li><hr className="dropdown-divider" /></li>
+              <li><a className="dropdown-item" href="#">Sign out</a></li>
+            </ul>
+          </div> */}
         </div>
       </div>
-    </div>
-  </header>
-    </>
+    </header>
   );
 };
 

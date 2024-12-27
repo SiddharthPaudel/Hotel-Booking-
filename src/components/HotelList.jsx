@@ -30,7 +30,7 @@ const hotels = [
 
 const HotelList = () => {
   return (
-    <div className="container my-4">
+    <div className="container my-4 " style={{ borderRadius: '20px', overflow: 'hidden' }}>
       {hotels.map((hotel, index) => (
         <div className="hotel-box d-flex align-items-center my-3 shadow rounded" key={index}>
           <div className="hotel-image">
@@ -47,7 +47,7 @@ const HotelList = () => {
               🌟 {hotel.rating} | {hotel.reviews}
             </p>
           </div>
-          <div>
+          <div className="button">
             <button className="btn btn-primary btn-sm">Explore</button>
           </div>
         </div>

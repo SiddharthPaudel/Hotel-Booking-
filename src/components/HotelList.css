@@ -10,7 +10,10 @@
     transition: transform 0.3s ease; /* Smooth hover effect */
     font-family: 'Nunito', sans-serif;
 }
+/* Add border radius to the container */
+
   
+
 .hotel-box:hover {
     transform: scale(1.02); /* Slight zoom on hover */
 }
@@ -44,6 +47,7 @@ button.btn {
     padding: 10px 20px;
     font-size: 0.9rem;
     font-weight: bold;
+    border-radius: 15px;
 }
   
 @media (max-width: 768px) {

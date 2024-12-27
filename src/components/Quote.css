@@ -2,8 +2,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 12px; /* Reduced gap between cards */
-    padding: 24px;
+
+    padding: 30px;
     background-color:white; /* Optional: background color */
     font-family: 'Nunito', sans-serif;
   }

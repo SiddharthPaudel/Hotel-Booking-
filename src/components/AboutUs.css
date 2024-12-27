@@ -34,9 +34,10 @@
 }
 
 .about-image img {
-  width: 100%;
+  width: 85%;
   height: auto;
   border-radius: 10px;
+  margin-left: 35px;
 }
 
 .about-text {

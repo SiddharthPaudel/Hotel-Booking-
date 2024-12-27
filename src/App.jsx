@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
-import Card from './components/Card';
+
 import Header from './components/Header'; // Assuming you already have this
 import Footer from './components/Footer'; // Assuming you already have this
 import './index.css'
@@ -21,7 +21,6 @@ function App() {
         <div style={{ minHeight: '80vh' }}>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/hotels" element={<Card />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/service" element={<Service />} />
             <Route path="/login" element={<Login />} />

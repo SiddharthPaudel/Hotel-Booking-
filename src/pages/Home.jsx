@@ -1,8 +1,7 @@
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+
 import Hom from "../assets/home.jpg";
 import './Home.css';
-import Card from "../components/Card";
+
 import Service from "../components/Service";
 import AboutUs from "../components/AboutUs";
 import HotelList from "../components/HotelList";
