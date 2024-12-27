@@ -1,7 +1,9 @@
+import SignUpPage from "../components/SignUpPage";
+
 const SignUp =()=>{
     return (
         <>
-        <h1>hello</h1>
+        <SignUpPage/>
         </>
     )
 }

@@ -1,86 +1,95 @@
+ /* Style the Quick Stay text */
+ .quick-text {
+  color: #007EF2; /* Quick text color */
+  font-family: 'Nunito', sans-serif; 
+}
 
+.stay-text {
+  color: black; /* Stay text color */
+}
+
+/* Optional: Adjust the size of the logo and text */
+.header-container h1 {
+  font-size: 2rem; /* Adjust font size as needed */
+  margin: 0;
+  font-family: 'Nunito', sans-serif; 
+}
+
+.header-container {
  
+  font-family: 'Nunito', sans-serif; 
+}
+/* Style the Quick Stay text */
+.quick-text {
+  color: #007EF2; /* Quick text color */
+  font-weight: 600; /* Semi-bold */
+}
 
-  /* Style the Quick Stay text */
-.quick-text {
-    color: #007EF2; /* Quick text color */
-  }
-  
-  .stay-text {
-    color: black; /* Stay text color */
-  }
-  
-  /* Optional: Adjust the size of the logo and text */
-  .header-container h1 {
-    font-size: 2rem; /* Adjust font size as needed */
-    margin: 0;
-    font-family: 'Nunito', sans-serif; 
-  }
-  /* Style the Quick Stay text */
-.quick-text {
-    color: #007EF2; /* Quick text color */
-  }
-  
-  .stay-text {
-    color: black; /* Stay text color */
-  }
-  
-  /* Header and navigation styling */
-  
-  
-  .nav {
-    display: flex;
-    justify-content: center;
-  }
-  /* Customize the NavLink color */
+.stay-text {
+  color: black; /* Stay text color */
+  font-weight: 600; /* Semi-bold */
+}
+
+
+/* Header and navigation styling */
+
+
+.nav {
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+  font-family: 'Nunito', sans-serif; 
+}
+/* Customize the NavLink color */
 .nav-link {
-    color: #007EF2 !important;  /* Apply your desired color */
+  color: black !important;  /* Apply your desired color */
+
+  
+}
+
+.nav-link:hover {
+  color: #005bb5 !important;  /* Optional: darken the color on hover */
+}
+
+
+.nav-item {
+  margin-right: 15px;
+}
+
+
+
+/* Make the header responsive */
+@media (max-width: 767px) {
+  /* On small screens, make the navigation vertical */
+  .nav {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 1rem;
   }
-  
-  .nav-link:hover {
-    color: #005bb5 !important;  /* Optional: darken the color on hover */
+
+  /* Adjust logo size on small screens */
+  .header-container h1 {
+    font-size: 1.2rem; /* Reduce font size for smaller screens */
   }
-  
-  
-  .nav-item {
-    margin-right: 15px;
+
+  /* Align search and buttons on small screens */
+  .d-flex {
+    justify-content: flex-start;
+    width: 100%;
   }
-  
-  /* Make the header responsive */
-  @media (max-width: 767px) {
-    /* On small screens, make the navigation vertical */
-    .nav {
-      flex-direction: column;
-      align-items: flex-start;
-      margin-top: 1rem;
-    }
-  
-    /* Adjust logo size on small screens */
-    .header-container h1 {
-      font-size: 1.2rem; /* Reduce font size for smaller screens */
-    }
-  
-    /* Align search and buttons on small screens */
-    .d-flex {
-      justify-content: flex-start;
-      width: 100%;
-    }
-  
-    .form-control {
-      width: 100%;
-      margin-right: 10px; /* Space between search and buttons */
-    }
-  
-    .btn {
-      margin-top: 10px; /* Add space between buttons */
-    }
+
+  .form-control {
+    width: 100%;
+    margin-right: 10px; /* Space between search and buttons */
   }
-  
-  @media (max-width: 991px) {
-    .header-container h1 {
-      font-size: 1.4rem; /* Slightly smaller font size for medium screens */
-    }
+
+  .btn {
+    margin-top: 10px; /* Add space between buttons */
   }
-  
-  
- 
+}
+
+@media (max-width: 991px) {
+  .header-container h1 {
+    font-size: 1.4rem; /* Slightly smaller font size for medium screens */
+  }
+}

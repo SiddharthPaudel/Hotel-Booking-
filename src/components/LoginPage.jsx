@@ -1,43 +1,59 @@
 import './LoginPage.css';
-const LoginPage=()=>{
-    return(
-      
-        <div className="login-container">
+
+const LoginPage = () => {
+  return (
+    <div className="login-container">
       <form className="login-form">
         <div className="head">
           <h2>Login</h2>
         </div>
-        <div className="Username ">
-          <p>Username: </p>
-          <div className="form-floating place ">
+        
+        {/* Welcome Back Text */}
+        <div className="welcome-back">
+          <p>Welcome Back! Please login to continue.</p>
+        </div>
+
+        <div className="input-container">
+          <div className="form-floating">
             <input
-              type="password"
-              className="form-control place"
-              id="floatingPassword"
-              placeholder="Enter your usernamw"
+              type="text"
+              className="form-control"
+              id="floatingUsername"
+              placeholder="Enter your username"
             />
-            <label>Username</label>
+            <label htmlFor="floatingUsername">Username</label>
           </div>
         </div>
-        <div className="password">
-          <p>Password:</p>
-          <div className="form-floating place ">
+
+        <div className="input-container">
+          <div className="form-floating">
             <input
               type="password"
-              className="form-control "
+              className="form-control"
               id="floatingPassword"
-              placeholder="Enter your usernamw"
+              placeholder="Enter your password"
             />
-            <label>Password</label>
+            <label htmlFor="floatingPassword">Password</label>
           </div>
         </div>
-        <br/>
-        <p className="forget"> Forget Password?</p>
-        <button className="btn btn-primary login-btn" type="submit">Login</button>
+
+        <div className="forget-container">
+          <p className="forget">Forget Password?</p>
+        </div>
+
+        <button className="btn btn-primary login-btn" type="submit">
+          Login
+        </button>
+
+        {/* Signup Redirection */}
+        <div className="signup-link">
+          <p>
+            Don't have an account? <a href="/signup" className="signup-link-text">Signup</a>
+          </p>
+        </div>
       </form>
     </div>
-    )
-    
-}
+  );
+};
 
 export default LoginPage;

@@ -15,7 +15,7 @@ const Home = () => {
         <img src={Hom} alt="Welcome to the site" />
         <div className="search-bar-container">
           <h2>Book Perfect Stay for Your Vacation</h2>
-          
+          <button className="explore-btn">Explore</button>
         </div>
       </div>
       <br/>

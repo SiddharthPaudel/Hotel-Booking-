@@ -5,7 +5,7 @@ import logo from "../assets/new_web.png"; // Import your logo
 
 const Header = () => {
   return (
-    <header className="p-3 mb-3 border-bottom header-container">
+    <header className="p-3 mb-3 bottom header-container">
       <div className="container">
         <div className="d-flex flex-wrap align-items-center justify-content-between">
           
@@ -20,27 +20,25 @@ const Header = () => {
           {/* Navigation Links */}
           <ul className="nav col-12 col-lg-auto mb-2 justify-content-center mb-md-0">
             <li>
-              <NavLink to="/" className="nav-link px-2 ">Home</NavLink>
+              <NavLink to="/" className="nav-link px-3">Home</NavLink>
             </li>
             <li>
-              <NavLink to="/inventory" className="nav-link px-2 ">AboutUs</NavLink>
+              <NavLink to="/inventory" className="nav-link px-3 ">AboutUs</NavLink>
             </li>
             <li>
-              <NavLink to="/customers" className="nav-link px-2 ">Service</NavLink>
+              <NavLink to="/customers" className="nav-link px-3 ">Service</NavLink>
             </li>
             <li>
-              <NavLink to="/products" className="nav-link px-2 ">Products</NavLink>
+              <NavLink to="/products" className="nav-link px-3 ">Hotels</NavLink>
             </li>
           </ul>
 
           {/* Search and Login/Signup Buttons */}
           <div className="d-flex flex-wrap align-items-center justify-content-end">
-            <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-              <input type="search" className="form-control" placeholder="Search..." aria-label="Search" />
-            </form>
+           
 
-            <div className="d-flex">
-              <Link to="/login" className="btn btn-outline-primary me-2">Login</Link>
+            <div className="d-flex ">
+              <Link to="/login" className="btn btn-outline me-2  ">Login</Link>
               <Link to="/signup" className="btn btn-primary">Sign Up</Link>
             </div>
           </div>
