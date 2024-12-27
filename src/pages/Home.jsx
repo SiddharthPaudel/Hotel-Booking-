@@ -5,6 +5,8 @@ import './Home.css';
 import Card from "../components/Card";
 import Service from "../components/Service";
 import AboutUs from "../components/AboutUs";
+import HotelList from "../components/HotelList";
+import Quote from "../components/Quote";
 
 const Home = () => {
   return (
@@ -17,12 +19,14 @@ const Home = () => {
           
         </div>
       </div>
-         {/* Card Section */}
-    
- 
-
+      <br/>
       <AboutUs/>
+      <br/>
       <Service/>
+      <br/>
+      <HotelList/>
+      <br/>
+      <Quote/>
 
       
 

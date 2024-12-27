@@ -1,0 +1,60 @@
+.hotel-box {
+    background: #fff;
+    display: flex;
+    padding: 24px; /* Spacious padding */
+    gap: 24px; /* Space between image and text */
+    border-radius: 12px; /* Rounded corners */
+    width: 100%; /* Full width of container */
+    min-height: 140px; /* Smaller height for the box */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    transition: transform 0.3s ease; /* Smooth hover effect */
+    font-family: 'Nunito', sans-serif;
+}
+  
+.hotel-box:hover {
+    transform: scale(1.02); /* Slight zoom on hover */
+}
+  
+.hotel-image img {
+    width: 220px; /* Keep the width consistent */
+    height: 120px; /* Reduce the height of the image */
+    object-fit: cover; /* Maintain aspect ratio and fill */
+    border-radius: 8px; /* Match the box's rounded corners */
+}
+  
+.hotel-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+  
+.hotel-name {
+    font-size: 1.4rem; /* Slightly smaller font size */
+    font-weight: bold;
+    color: #333;
+}
+  
+.hotel-address,
+.hotel-reviews {
+    font-size: 1rem; /* Adjusted font size for details */
+    color: #555; /* Subtle color */
+}
+  
+button.btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+  
+@media (max-width: 768px) {
+    .hotel-box {
+        flex-direction: column; /* Stack content vertically on smaller screens */
+        min-height: auto; /* Allow flexible height */
+        text-align: left;
+    }
+  
+    .hotel-image img {
+        width: 100%;
+        height: auto;
+    }
+}

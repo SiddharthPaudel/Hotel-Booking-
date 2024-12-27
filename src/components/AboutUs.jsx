@@ -32,12 +32,7 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* Footer Call-to-Action */}
-      <section className="cta-section">
-        <h2>Ready to Plan Your Next Stay?</h2>
-        <p>Discover the best hotels and experiences with QuickStay.</p>
-        <button className="cta-button">Explore Now</button>
-      </section>
+     
     </div>
   );
 };

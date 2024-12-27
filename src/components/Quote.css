@@ -1,0 +1,88 @@
+.features-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px; /* Reduced gap between cards */
+    padding: 24px;
+    background-color:white; /* Optional: background color */
+    font-family: 'Nunito', sans-serif;
+  }
+  
+  .feature-card {
+    flex: 1;
+    max-width: 360px; /* Increased max width */
+    min-height: 240px; /* Increased height */
+    text-align: center;
+    padding: 20px; /* Slightly larger padding */
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for cards */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-5px); /* Slight hover effect */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .feature-image {
+    width: 120px; /* Increased size for images */
+    height: 120px;
+    margin-bottom: 16px;
+    object-fit: contain; /* Maintain aspect ratio */
+  }
+  
+  .feature-title {
+    font-size: 1.4rem; /* Slightly larger font size for the title */
+    /* color: #333; */
+    margin-bottom: 8px;
+  }
+  
+  .feature-description {
+    font-size: 1rem; /* Slightly larger font size for the description */
+    /* color: #666; */
+  }
+  
+  @media (max-width: 768px) {
+    .features-container {
+      flex-direction: column; /* Stack cards vertically on smaller screens */
+      gap: 16px; /* Slightly larger gap for vertical stacking */
+    }
+  
+    .feature-card {
+      max-width: 100%; /* Allow full width for smaller screens */
+    }
+  }
+
+
+  .cta-section {
+    font-family: 'Nunito', sans-serif;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.cta-section h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.cta-section p {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.cta-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.cta-button:hover {
+  background-color: #0056b3;
+}
+
+  

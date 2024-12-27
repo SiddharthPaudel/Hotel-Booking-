@@ -56,31 +56,4 @@
   line-height: 1.6;
 }
 
-.cta-section {
-  text-align: center;
-  margin-top: 40px;
-}
 
-.cta-section h2 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-
-.cta-section p {
-  font-size: 1.2rem;
-  color: #555;
-}
-
-.cta-button {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-.cta-button:hover {
-  background-color: #0056b3;
-}
