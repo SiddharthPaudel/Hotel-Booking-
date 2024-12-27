@@ -29,7 +29,7 @@ const Header = () => {
               <NavLink to="/customers" className="nav-link px-2 ">Service</NavLink>
             </li>
             <li>
-              <NavLink to="/products" className="nav-link px-2 ">Products</NavLink>
+              <NavLink to="/products" className="nav-link px-2 ">Hotels</NavLink>
             </li>
           </ul>
 

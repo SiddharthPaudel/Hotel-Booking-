@@ -16,6 +16,11 @@
     margin: 0;
     font-family: 'Nunito', sans-serif; 
   }
+
+  .header-container {
+   
+    font-family: 'Nunito', sans-serif; 
+  }
   /* Style the Quick Stay text */
 .quick-text {
     color: #007EF2; /* Quick text color */
