@@ -25,6 +25,7 @@
   font-weight: 600; /* Semi-bold */
 }
 
+
 .stay-text {
   color: black; /* Stay text color */
   font-weight: 600; /* Semi-bold */
@@ -41,6 +42,45 @@
   font-family: 'Nunito', sans-serif; 
 }
 /* Customize the NavLink color */
+
+  /* Style the Quick Stay text */
+.quick-text {
+    color: #007EF2; /* Quick text color */
+  }
+  
+  .stay-text {
+    color: black; /* Stay text color */
+  }
+  
+  /* Optional: Adjust the size of the logo and text */
+  .header-container h1 {
+    font-size: 2rem; /* Adjust font size as needed */
+    margin: 0;
+    font-family: 'Nunito', sans-serif; 
+  }
+
+  .header-container {
+   
+    font-family: 'Nunito', sans-serif; 
+  }
+  /* Style the Quick Stay text */
+.quick-text {
+    color: #007EF2; /* Quick text color */
+  }
+  
+  .stay-text {
+    color: black; /* Stay text color */
+  }
+  
+  /* Header and navigation styling */
+  
+  
+  .nav {
+    display: flex;
+    justify-content: center;
+  }
+  /* Customize the NavLink color */
+
 .nav-link {
   color: black !important;  /* Apply your desired color */
 
