@@ -40,7 +40,47 @@ body{
     object-fit: cover; /* Ensures the image covers the area */
     object-position: center; /* Centers the image */
     border-radius: 15px;
+  
+    /* Animation properties */
+    opacity: 0; /* Initially invisible */
+    transform: translateY(20px); /* Slightly shifted downward */
+    animation: fadeIn 1.5s ease-out forwards; /* Apply the animation */
   }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+.image-container img {
+  width: 100%; /* Makes the image take full width of its container */
+  height: 630px; /* Keeps the aspect ratio intact */
+  object-fit: cover; /* Ensures the image covers the area */
+  object-position: center; /* Centers the image */
+  border-radius: 15px;
+
+  /* Animation properties */
+  opacity: 0; /* Initially invisible */
+  transform: translateY(20px); /* Slightly shifted downward */
+  animation: fadeIn 1.5s ease-out forwards; /* Apply the animation */
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+  
   
   .search-bar-container {
     position: absolute;

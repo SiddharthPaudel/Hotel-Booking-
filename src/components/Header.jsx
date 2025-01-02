@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
-import './Header.css';
+import './Header.css'; // Retain this for other styles
 import logo from "../assets/new_web.png"; // Import your logo
 
 const Header = () => {
@@ -23,39 +23,24 @@ const Header = () => {
               <NavLink to="/" className="nav-link px-3">Home</NavLink>
             </li>
             <li>
-              <NavLink to="/inventory" className="nav-link px-3 ">AboutUs</NavLink>
+              <NavLink to="/inventory" className="nav-link px-3">AboutUs</NavLink>
             </li>
             <li>
-              <NavLink to="/customers" className="nav-link px-3 ">Service</NavLink>
+              <NavLink to="/customers" className="nav-link px-3">Service</NavLink>
             </li>
             <li>
-              <NavLink to="/products" className="nav-link px-3 ">Hotels</NavLink>
+              <NavLink to="/products" className="nav-link px-3">Hotels</NavLink>
             </li>
           </ul>
 
           {/* Search and Login/Signup Buttons */}
           <div className="d-flex flex-wrap align-items-center justify-content-end">
-           
-
-            <div className="d-flex ">
-              <Link to="/login" className="btn btn-outline me-2  ">Login</Link>
-              <Link to="/signup" className="btn btn-primary">Sign Up</Link>
+            <div className="d-flex">
+              {/* Apply font-weight using inline classes */}
+              <Link to="/login" className="btn btn-outline me-2 fw-semibold">Login</Link>
+              <Link to="/signup" className="btn btn-primary fw-semibold">Sign Up</Link>
             </div>
           </div>
-
-          {/* Profile Dropdown */}
-          {/* <div className="dropdown text-end">
-            <a href="#" className="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" className="rounded-circle" />
-            </a>
-            <ul className="dropdown-menu text-small ">
-              <li><a className="dropdown-item" href="#">New project...</a></li>
-              <li><a className="dropdown-item" href="#">Settings</a></li>
-              <li><a className="dropdown-item" href="#">Profile</a></li>
-              <li><hr className="dropdown-divider" /></li>
-              <li><a className="dropdown-item" href="#">Sign out</a></li>
-            </ul>
-          </div> */}
         </div>
       </div>
     </header>
