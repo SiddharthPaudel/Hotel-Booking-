@@ -1,9 +1,27 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 import './LoginPage.css';
 
 const LoginPage = () => {
+  const navigate = useNavigate(); // Initialize the navigate function
+
+  const handleLogin = (e) => {
+    e.preventDefault(); // Prevent default form submission
+
+    // Simulate login logic here
+    const isAuthenticated = true; // Replace with actual authentication logic
+
+    if (isAuthenticated) {
+      // Navigate to the dashboard after successful login
+      navigate('/dashboard');
+    } else {
+      alert('Invalid username or password'); // Handle failed login attempt
+    }
+  };
+
   return (
     <div className="login-container">
-      <form className="login-form">
+      <form className="login-form" onSubmit={handleLogin}> {/* Add onSubmit handler */}
         <div className="head">
           <h2>Login</h2>
         </div>
@@ -20,6 +38,7 @@ const LoginPage = () => {
               className="form-control"
               id="floatingUsername"
               placeholder="Enter your username"
+              required
             />
             <label htmlFor="floatingUsername">Username</label>
           </div>
@@ -32,6 +51,7 @@ const LoginPage = () => {
               className="form-control"
               id="floatingPassword"
               placeholder="Enter your password"
+              required
             />
             <label htmlFor="floatingPassword">Password</label>
           </div>
@@ -48,7 +68,8 @@ const LoginPage = () => {
         {/* Signup Redirection */}
         <div className="signup-link">
           <p>
-            Don't have an account? <a href="/signup" className="signup-link-text">Signup</a>
+            Don't have an account?{' '}
+            <a href="/signup" className="signup-link-text">Signup</a>
           </p>
         </div>
       </form>
