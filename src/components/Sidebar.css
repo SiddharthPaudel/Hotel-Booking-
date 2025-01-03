@@ -1,0 +1,123 @@
+/* General styles */
+body {
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Sidebar styles */
+  .sidebar-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #f0f0f0; /* Grey background */
+    color: #333;
+    padding-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    z-index: 1000;
+  }
+  
+  /* Sidebar Brand */
+  .sidebar .navbar-brand {
+    font-size: 30px; /* Increase the font size of Quick Stay */
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 30px; /* Adds space between the website name and buttons */
+  }
+  
+  /* Sidebar Links */
+  .nav-link {
+    font-size: 18px; /* Set font size to 18px for buttons */
+    padding: 12px 20px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+  }
+  
+  .nav-link:hover {
+    background-color: #fff; /* White background on hover */
+    color: #333; /* Text color stays the same */
+    border-radius: 5px; /* Rounded corners on hover */
+  }
+  
+  /* Sidebar Icons */
+  .nav-link .react-icons {
+    margin-right: 15px; /* Add distance between icon and text */
+    font-size: 20px; /* Adjust icon size */
+  }
+  
+  /* Settings & Logout Section */
+  .settings-logout {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .settings-logout .nav-link {
+    padding: 12px 20px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    color: #333;
+    transition: background-color 0.3s ease;
+  }
+  
+  .settings-logout .nav-link:hover {
+    background-color: #fff; /* White background on hover */
+    color: #333; /* Text color stays the same */
+    border-radius: 5px; /* Rounded corners on hover */
+  }
+  
+  /* Main content area */
+  .content {
+    margin-left: 250px;
+    padding: 20px;
+    flex-grow: 1;
+    background-color: #f9f9f9; /* Light background color for content */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 992px) {
+    .sidebar {
+      width: 200px;
+    }
+  
+    .content {
+      margin-left: 200px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 100%;
+      position: relative;
+      height: auto;
+    }
+  
+    .content {
+      margin-left: 0;
+    }
+  
+    .sidebar .navbar-brand {
+      margin-left: 10px;
+    }
+  
+    .sidebar .nav-link {
+      font-size: 16px;
+    }
+  
+    .settings-logout .nav-link {
+      font-size: 16px;
+    }
+  }
+  
