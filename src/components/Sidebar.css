@@ -36,7 +36,7 @@ body {
   
   /* Sidebar Links */
   .nav-link {
-    font-size: 18px; /* Set font size to 18px for buttons */
+    font-size: 15px; /* Set font size to 18px for buttons */
     padding: 12px 20px;
     color: #333;
     display: flex;
@@ -65,7 +65,7 @@ body {
   
   .settings-logout .nav-link {
     padding: 12px 20px;
-    font-size: 18px;
+    font-size: 15px;
     display: flex;
     align-items: center;
     color: #333;

@@ -14,7 +14,7 @@ const Sidebar = () => {
         <div className="menu">
           <Nav className="flex-column">
             <Nav.Link as={Link} to="/dashboard" className="nav-link">
-              <FaHome /> Dashboard
+              <FaHome />       Dashboard
             </Nav.Link>
             <Nav.Link as={Link} to="/customer" className="nav-link">
               <FaUser /> Customer
