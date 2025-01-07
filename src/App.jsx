@@ -10,6 +10,7 @@ import Dashboard from './pages/Dashboard';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import './index.css';
+import HotelPage from './components/Hotel/HotelPage';
 
 
 function App() {
@@ -35,6 +36,7 @@ function AppContent() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/service" element={<Service />} />
+          <Route path="/hotel" element={<HotelPage/>} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/dashboard" element={<Dashboard/>} />
