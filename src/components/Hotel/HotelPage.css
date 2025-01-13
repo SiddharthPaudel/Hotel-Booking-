@@ -1,17 +1,47 @@
-/* Custom CSS for the Hotel Card */
-.card {
-    border-radius: 10px;
-    overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+.hotel-page {
+  font-family: 'Nunito', sans-serif;
+}
+
+.hotel-page .hotel-card {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.hotel-page .hotel-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.hotel-page .hotel-card img {
+  height: 220px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+}
+
+.hotel-page .hotel-card .card-body {
+  padding: 1rem;
+}
+
+.hotel-page .hotel-card .card-title {
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+.hotel-page .hotel-card .card-text {
+  margin-bottom: 0.5rem;
+}
+
+.hotel-page .hotel-card button {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+  .hotel-page .hotel-card img {
+    height: 180px;
   }
-  
-  .card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-  }
-  
-  .card img {
-    height: 200px;
-    object-fit: cover;
-  }
-  
+}

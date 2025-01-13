@@ -5,9 +5,9 @@ import Hotel2 from "../../assets/blue_hotel.jpg"; // Import any additional image
 import Hotel3 from "../../assets/hotel5.jpeg"; // Import any additional images
 import Hotel4 from "../../assets/n1.webp"; // Import any additional images
 import Hotel5 from "../../assets/n3.webp"; // Import any additional images
+import "./HotelPage.css";
 
 const HotelPage = () => {
-  // Static hotel data
   const hotels = [
     {
       id: 1,
@@ -49,49 +49,48 @@ const HotelPage = () => {
       description: "Experience the charm of the countryside.",
       location: "Yorkshire, UK",
     },
+    {
+      id: 6,
+      name: "Luxury Urban Hotel",
+      image: Hotel3,
+      price: 200,
+      description: "A premium stay with modern amenities.",
+      location: "London, UK",
+    },
   ];
 
   return (
-    <Container>
-      <h2 className="my-4 text-center">Available Hotels</h2>
-      <Row>
-        {hotels.map((hotel) => (
-          <Col key={hotel.id} md={4} className="mb-4">
-            <Card className="shadow-sm border-0" style={{ minWidth: "18rem" }}>
-              <Card.Img
-                variant="top"
-                src={hotel.image || "https://via.placeholder.com/300"}
-                alt={hotel.name}
-                style={{
-                  height: "200px", // Set fixed height for the image
-                  objectFit: "cover", // Ensures the image covers the area while maintaining aspect ratio
-                  borderRadius: "0.25rem 0.25rem 0 0", // Rounded top corners
-                  width: "100%", // Make sure it takes the full width of the card
-                  overflow: "hidden", // Prevent any overflow
-                }}
-              />
-              <Card.Body>
-                <Card.Title className="fw-bold">{hotel.name}</Card.Title>
-                <Card.Text>
-                  <small className="text-muted">
-                    <i className="bi bi-geo-alt-fill"></i> {hotel.location}
-                  </small>
-                </Card.Text>
-                <Card.Text className="text-muted">
-                  {hotel.description}
-                </Card.Text>
-                <Card.Text>
-                  <strong>Price:</strong> ${hotel.price} per night
-                </Card.Text>
-                <Button variant="primary" className="w-100">
-                  Book Now
-                </Button>
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
-      </Row>
-    </Container>
+    <Container className="hotel-page py-4">
+    <Row className="g-4">
+      {hotels.map((hotel) => (
+        <Col key={hotel.id} xs={12} sm={6} lg={4}>
+          <Card className="hotel-card shadow-sm border-0">
+            <Card.Img
+              variant="top"
+              src={hotel.image || "https://via.placeholder.com/300"}
+              alt={hotel.name}
+            />
+            <Card.Body>
+              <Card.Title className="fw-bold">{hotel.name}</Card.Title>
+              <Card.Text>
+                <small className="text-muted">
+                  <i className="bi bi-geo-alt-fill"></i> {hotel.location}
+                </small>
+              </Card.Text>
+              <Card.Text className="text-muted">{hotel.description}</Card.Text>
+              <Card.Text>
+                <strong>Price:</strong> ${hotel.price} per night
+              </Card.Text>
+              <Button variant="primary" className="w-100">
+                Book Now
+              </Button>
+            </Card.Body>
+          </Card>
+        </Col>
+      ))}
+    </Row>
+  </Container>
+  
   );
 };
 

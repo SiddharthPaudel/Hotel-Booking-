@@ -5,7 +5,7 @@ import logo from "../assets/new_web.png"; // Import your logo
 
 const Header = () => {
   return (
-    <header className="p-3 mb-3 bottom header-container">
+    <header className="p-3 mb-3 bottom   header-container">
       <div className="container">
         <div className="d-flex flex-wrap align-items-center justify-content-between">
           
