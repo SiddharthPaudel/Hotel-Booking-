@@ -1,6 +1,6 @@
 import React from "react";
 import { Nav } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
 import { RxDashboard } from "react-icons/rx";
 import { SlPeople } from "react-icons/sl";
 import { LuHotel } from "react-icons/lu";
@@ -11,6 +11,16 @@ import { MdLogout } from "react-icons/md";
 import "./Sidebar.css"; // Import custom CSS for further styling
 
 const Sidebar = () => {
+  const navigate = useNavigate(); // Initialize the navigate function
+
+  const handleLogout = () => {
+    // Clear any user data from localStorage (or any other session storage)
+    localStorage.removeItem("token"); // For example, removing the token
+
+    // Navigate to the homepage ("/")
+    navigate("/"); // This will redirect to the home page
+  };
+
   return (
     <div className="sidebar-container">
       {/* Sidebar */}
@@ -22,7 +32,7 @@ const Sidebar = () => {
         <div className="menu">
           <Nav className="flex-column">
             <Nav.Link as={Link} to="/dashboard" className="nav-link">
-              <RxDashboard />   Dashboard
+              <RxDashboard /> Dashboard
             </Nav.Link>
             <Nav.Link as={Link} to="/customer" className="nav-link">
               <SlPeople /> Customer
@@ -48,7 +58,7 @@ const Sidebar = () => {
             <Nav.Link as={Link} to="/settings" className="nav-link">
               <FiSettings /> Settings
             </Nav.Link>
-            <Nav.Link as={Link} to="/logout" className="nav-link">
+            <Nav.Link onClick={handleLogout} className="nav-link">
               <MdLogout /> Logout
             </Nav.Link>
           </Nav>

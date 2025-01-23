@@ -95,6 +95,23 @@
   margin-right: 15px;
 }
 
+/* Add this CSS to your stylesheet */
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-menu {
+  animation: fadeSlideIn 0.35s ease-out;
+}
+
+
 
 
 /* Make the header responsive */

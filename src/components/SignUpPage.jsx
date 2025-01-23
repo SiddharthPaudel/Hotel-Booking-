@@ -3,6 +3,8 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the toast styles
 import './SignUpPage.css';
+import { Navigate } from 'react-router-dom';
+
 
 const SignUpPage = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +14,7 @@ const SignUpPage = () => {
     confirmPassword: '',
   });
   const [error, setError] = useState('');
+ 
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -21,10 +24,12 @@ const SignUpPage = () => {
     e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
+      toast.error('Passwords do not match. Please try again.');
       return;
     }
 
+   
+    
     try {
       const response = await axios.post('http://localhost:5000/api/auth/register', {
         username: formData.username,
@@ -35,6 +40,8 @@ const SignUpPage = () => {
 
       // Display success toast notification
       toast.success('Registration successful! You can now log in.');
+      setError('');
+      setTimeout(() => Navigate('/login'), 2000); // Redirect after 2 seconds
 
       setError('');
     } catch (err) {
@@ -115,9 +122,10 @@ const SignUpPage = () => {
           </div>
         </div>
 
-        <button className="btn btn-primary register-btn" type="submit">
-          Register
-        </button>
+        <button className="btn btn-primary register-btn" type="submit" >
+  Register
+</button>
+
 
         {error && <p className="error-message">{error}</p>}
 

@@ -6,18 +6,19 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
-
 import Header from './components/Header';
 import Footer from './components/Footer';
 import './index.css';
 import HotelPage from './components/Hotel/HotelPage';
-
+import { AuthProvider } from './context/AuthContext'; // Import AuthProvider
 
 function App() {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <AuthProvider> {/* Wrap AppContent with AuthProvider */}
+      <Router>
+        <AppContent />
+      </Router>
+    </AuthProvider>
   );
 }
 
@@ -36,10 +37,10 @@ function AppContent() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/service" element={<Service />} />
-          <Route path="/hotel" element={<HotelPage/>} />
+          <Route path="/hotel" element={<HotelPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/dashboard" element={<Dashboard/>} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </div>
 

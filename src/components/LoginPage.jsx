@@ -1,19 +1,29 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
-import { toast, ToastContainer } from 'react-toastify'; // Import toastify
-import 'react-toastify/dist/ReactToastify.css'; // Import toastify CSS
+import { useNavigate } from 'react-router-dom'; 
+import { toast, ToastContainer } from 'react-toastify'; 
+import 'react-toastify/dist/ReactToastify.css'; 
 import './LoginPage.css';
+import { useAuth } from '../context/AuthContext'; // Import the custom hook to use AuthContext
 
 const LoginPage = () => {
-  const navigate = useNavigate(); // Initialize the navigate function
-  const [email, setEmail] = useState(''); // State for email
-  const [password, setPassword] = useState(''); // State for password
+  const navigate = useNavigate();
+  const { login } = useAuth(); // Use the login function from AuthContext
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault();
 
     try {
-      // Send a POST request to the login API
+      if (email === 'admin@gmail.com' && password === 'admin@123') {
+        // Admin login process
+        toast.success('Admin login successful!', { position: 'top-center', autoClose: 3000 });
+        const adminData = { email, token: 'admin-token', name: 'Admin' };
+        login(adminData); // Call login from context with admin data
+        setTimeout(() => navigate('/dashboard'), 3000);
+        return;
+      }
+
       const response = await fetch('http://localhost:5000/api/auth/login', {
         method: 'POST',
         headers: {
@@ -24,31 +34,18 @@ const LoginPage = () => {
 
       if (response.ok) {
         const data = await response.json();
-        // Show success toast
-        toast.success('Login successful!', {
-          position: 'top-center',
-          autoClose: 3000,
-        });
 
-        // Save the token (e.g., in localStorage)
-        localStorage.setItem('token', data.token);
-
-        // Navigate to the dashboard
-        setTimeout(() => navigate('/hotel'), 3000); // Navigate after toast
+        // Store token and user data in context
+        login({ email: data.email, token: data.token, name: data.name });
+        
+        toast.success('Login successful!', { position: 'top-center', autoClose: 3000 });
+        setTimeout(() => navigate('/'), 3000); 
       } else {
-        // Show error toast
-        toast.error('Invalid email or password', {
-          position: 'top-center',
-          autoClose: 3000,
-        });
+        toast.error('Invalid email or password', { position: 'top-center', autoClose: 3000 });
       }
     } catch (error) {
       console.error('Login error:', error);
-      // Show error toast for unexpected errors
-      toast.error('Something went wrong. Please try again later.', {
-        position: 'top-center',
-        autoClose: 3000,
-      });
+      toast.error('Something went wrong. Please try again later.', { position: 'top-center', autoClose: 3000 });
     }
   };
 
@@ -59,12 +56,10 @@ const LoginPage = () => {
           <h2>Login</h2>
         </div>
 
-        {/* Welcome Back Text */}
         <div className="welcome-back">
           <p>Welcome Back! Please login to continue.</p>
         </div>
 
-        {/* Email Input */}
         <div className="input-container">
           <div className="form-floating">
             <input
@@ -73,14 +68,13 @@ const LoginPage = () => {
               id="floatingEmail"
               placeholder="Enter your email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)} // Update email in state
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
             <label htmlFor="floatingEmail">Email</label>
           </div>
         </div>
 
-        {/* Password Input */}
         <div className="input-container">
           <div className="form-floating">
             <input
@@ -89,7 +83,7 @@ const LoginPage = () => {
               id="floatingPassword"
               placeholder="Enter your password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)} // Update password in state
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
             <label htmlFor="floatingPassword">Password</label>
@@ -104,7 +98,6 @@ const LoginPage = () => {
           Login
         </button>
 
-        {/* Signup Redirection */}
         <div className="signup-link">
           <p>
             Don't have an account?{' '}
@@ -113,7 +106,6 @@ const LoginPage = () => {
         </div>
       </form>
 
-      {/* Toast Container for Notifications */}
       <ToastContainer />
     </div>
   );
