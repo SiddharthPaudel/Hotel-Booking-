@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
-import { FaUserCircle } from 'react-icons/fa'; // Import profile icon
+
 import { useAuth } from "../context/AuthContext"; // Import the useAuth hook
 import './Header.css'; // Retain this for other styles
 import profile from "../assets/user.png";

@@ -1,4 +1,3 @@
-import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Line, Pie } from "react-chartjs-2";
 import {
@@ -12,6 +11,11 @@ import {
   PointElement,
 } from "chart.js";
 import Sidebar from "../components/Sidebar";
+import CustomerTable from "../cutomer/customer"; // Import the Customer Table component
+import HotelDetails from "../hotel_details/hotel"; // Import other sections (e.g., Reports)
+import HotelTable from "../hotel_table/HotelTable"
+import BookingTable from "../booking/Booking"; // Import other sections (e.g., Settings)
+import { useState } from "react";
 import "./dashboard.css"; // Import the CSS file
 
 // Register Chart.js components
@@ -26,6 +30,8 @@ ChartJS.register(
 );
 
 const Dashboard = () => {
+  const [activeSection, setActiveSection] = useState("charts"); // Default section (can be 'charts', 'customer', 'reports', etc.)
+
   // Static Data for Line Chart (Hotel Bookings Over Time)
   const lineChartData = {
     labels: ["January", "February", "March", "April", "May", "June"],
@@ -68,33 +74,86 @@ const Dashboard = () => {
       <Row>
         {/* Sidebar */}
         <Col md={2}>
-          <Sidebar />
+          <Sidebar setActiveSection={setActiveSection} />
         </Col>
 
         {/* Main Content */}
         <Col md={10} className="Dashboard-container">
-          <Row className="p-4">
-            <Col>
-              <h3>Dashboard</h3>
-              <p>Hi, Siddhartha</p>
-            </Col>
-          </Row>
+          {activeSection === "charts" && (
+            <>
+              <Row className="p-4">
+                <Col>
+                  <h3>Dashboard</h3>
+                  <p>Hi, Siddhartha</p>
+                </Col>
+              </Row>
 
-          {/* Charts Side by Side */}
-          <Row className="p-4">
-            {/* Line Chart */}
-            <Col md={6}>
-              <div style={{ width: "100%", height: "300px" }}>
-                <Line data={lineChartData} options={lineChartOptions} />
-              </div>
-            </Col>
+              {/* Summary Boxes */}
+              <Row className="p-4 summary-container">
+                <Col xs={12} md={4} className="mb-3 mb-md-0">
+                  <div className="summary-box bg-light-red">
+                    <h5>Total Bookings</h5>
+                    <p>150</p>
+                  </div>
+                </Col>
+                <Col xs={12} md={4} className="mb-3 mb-md-0">
+                  <div className="summary-box bg-light-yellow">
+                    <h5>Active Customers</h5>
+                    <p>75</p>
+                  </div>
+                </Col>
+                <Col xs={12} md={4}>
+                  <div className="summary-box bg-light-pink">
+                    <h5>Revenue</h5>
+                    <p>$12,000</p>
+                  </div>
+                </Col>
+              </Row>
+            </>
+          )}
 
-            {/* Pie Chart */}
-            <Col md={6}>
-              <div style={{ width: "100%", height: "300px" }}>
-                <Pie data={pieChartData} options={pieChartOptions} />
-              </div>
-            </Col>
+          {/* Conditionally render content based on activeSection */}
+          <Row className="p-4">
+            {activeSection === "charts" && (
+              <>
+                {/* Charts */}
+                <Col md={6}>
+                  <div style={{ width: "100%", height: "300px" }}>
+                    <Line data={lineChartData} options={lineChartOptions} />
+                  </div>
+                </Col>
+
+                <Col md={6}>
+                  <div style={{ width: "100%", height: "300px" }}>
+                    <Pie data={pieChartData} options={pieChartOptions} />
+                  </div>
+                </Col>
+              </>
+            )}
+
+            {activeSection === "customer" && (
+              <Col md={12}>
+                <CustomerTable />
+              </Col>
+            )}
+
+            {activeSection === "hotel" && (
+              <Col md={12}>
+                <HotelDetails /> {/* Render the Reports component */}
+              </Col>
+            )}
+
+            {activeSection === "HotelTable" && (
+              <Col md={12}>
+                <HotelTable /> {/* Render the Reports component */}
+              </Col>
+            )}
+
+            {activeSection === "booking" && (
+              <Col md={12}>
+                <BookingTable /> {/* Render the Settings component */}
+              </Col>
+            )}
           </Row>
         </Col>
       </Row>

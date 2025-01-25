@@ -1,24 +1,21 @@
-import React from "react";
 import { Nav } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
+import { Link } from "react-router-dom"; // Import Link
 import { RxDashboard } from "react-icons/rx";
 import { SlPeople } from "react-icons/sl";
 import { LuHotel } from "react-icons/lu";
 import { VscOpenPreview } from "react-icons/vsc";
-import { TbListDetails, TbBrandBooking } from "react-icons/tb";
+import {  TbBrandBooking } from "react-icons/tb";
 import { FiSettings } from "react-icons/fi";
 import { MdLogout } from "react-icons/md";
 import "./Sidebar.css"; // Import custom CSS for further styling
 
-const Sidebar = () => {
-  const navigate = useNavigate(); // Initialize the navigate function
-
+const Sidebar = ({ setActiveSection }) => {
   const handleLogout = () => {
     // Clear any user data from localStorage (or any other session storage)
     localStorage.removeItem("token"); // For example, removing the token
 
     // Navigate to the homepage ("/")
-    navigate("/"); // This will redirect to the home page
+    window.location.href = "/"; // This will redirect to the home page
   };
 
   return (
@@ -31,22 +28,35 @@ const Sidebar = () => {
         </div>
         <div className="menu">
           <Nav className="flex-column">
-            <Nav.Link as={Link} to="/dashboard" className="nav-link">
+            <Nav.Link
+              onClick={() => setActiveSection("charts")}
+              className="nav-link"
+            >
               <RxDashboard /> Dashboard
             </Nav.Link>
-            <Nav.Link as={Link} to="/customer" className="nav-link">
-              <SlPeople /> Customer
+            <Nav.Link
+              onClick={() => setActiveSection("customer")}
+              className="nav-link"
+            >
+              <SlPeople /> Customer Details
             </Nav.Link>
-            <Nav.Link as={Link} to="/hotel-details" className="nav-link">
+            <Nav.Link
+              onClick={() => setActiveSection("hotel")}
+              className="nav-link"
+            >
               <LuHotel /> Hotel Details
             </Nav.Link>
-            <Nav.Link as={Link} to="/reviews" className="nav-link">
-              <VscOpenPreview /> Reviews
+            <Nav.Link
+              onClick={() => setActiveSection("HotelTable")}
+              className="nav-link"
+            >
+              <VscOpenPreview /> Hotel
             </Nav.Link>
-            <Nav.Link as={Link} to="/customer-details" className="nav-link">
-              <TbListDetails /> Customer Details
-            </Nav.Link>
-            <Nav.Link as={Link} to="/calendar" className="nav-link">
+            
+            <Nav.Link
+              onClick={() => setActiveSection("booking")}
+              className="nav-link"
+            >
               <TbBrandBooking /> Booking
             </Nav.Link>
           </Nav>
@@ -55,7 +65,10 @@ const Sidebar = () => {
         {/* Settings & Logout buttons */}
         <div className="settings-logout">
           <Nav className="flex-column mt-auto">
-            <Nav.Link as={Link} to="/settings" className="nav-link">
+            <Nav.Link
+              onClick={() => setActiveSection("settings")}
+              className="nav-link"
+            >
               <FiSettings /> Settings
             </Nav.Link>
             <Nav.Link onClick={handleLogout} className="nav-link">

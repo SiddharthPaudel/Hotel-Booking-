@@ -10,6 +10,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import './index.css';
 import HotelPage from './components/Hotel/HotelPage';
+import Customer from './cutomer/customer';
 import { AuthProvider } from './context/AuthContext'; // Import AuthProvider
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
 
 function AppContent() {
   const location = useLocation(); // Get current route
-  const hideHeaderFooter = location.pathname === '/dashboard'; // Hide Header & Footer on Dashboard
+  const hideHeaderFooter = location.pathname === '/dashboard'; // Hide Header & Footer on Admin Dashboard
 
   return (
     <div>
@@ -41,6 +42,7 @@ function AppContent() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/customer" element={<Customer />} />
         </Routes>
       </div>
 

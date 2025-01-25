@@ -1,0 +1,52 @@
+.hotel-table-container {
+    padding: 20px;
+  }
+  
+  .add-hotel-form {
+    margin-bottom: 20px;
+  }
+  
+  .dropzone {
+    border: 2px dashed #007bff;
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .hotel-image-preview {
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    padding: 5px;
+    border-radius: 4px;
+  }
+  
+  .hotel-table-title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .hotel-table th, .hotel-table td {
+    text-align: center;
+  }
+  
+  button {
+    margin-top: 10px;
+  }
+  
+  button + button {
+    margin-left: 10px;
+  }
+  
+  .d-flex {
+    display: flex;
+  }
+  
+  .justify-content-center {
+    justify-content: center;
+  }
+  
+  .mt-3 {
+    margin-top: 1rem;
+  }
+  

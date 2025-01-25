@@ -20,4 +20,68 @@
   .chart-container .card {
     height: 100%;
   }
+
+  /* Move the container upward */
+.summary-container {
+  margin-top: -20px; /* Adjust this value to move the section higher */
+}
+
+/* Ensure summary boxes are responsive */
+.summary-box {
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover effect for better interaction */
+.summary-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Adjust text inside summary boxes */
+.summary-box h5 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #333;
+}
+
+.summary-box p {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Background color classes */
+.bg-light-red {
+  background-color: #f8d7da; /* Light Red */
+  color: #721c24;
+}
+
+.bg-light-yellow {
+  background-color: #fff3cd; /* Light Yellow */
+  color: #856404;
+}
+
+.bg-light-pink {
+  background-color: #f9e0f7; /* Light Pink */
+  color: #6f1d58;
+}
+
+/* Responsive spacing adjustments */
+@media (max-width: 768px) {
+  .summary-container {
+    margin-top: -10px; /* Smaller upward adjustment for mobile */
+  }
+  .summary-box {
+    padding: 15px;
+  }
+  .summary-box p {
+    font-size: 20px;
+  }
+}
+
   
