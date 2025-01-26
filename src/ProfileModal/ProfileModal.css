@@ -1,0 +1,140 @@
+/* Modal background overlay */
+body {
+    font-family: 'Nunito', sans-serif;
+  }
+  
+  .modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050;
+  }
+  
+  /* Modal content */
+  .modal-content {
+    background: transparent;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1060;
+  }
+  
+  /* Adjust form container for a smaller width */
+  .form-container {
+    background: #fff; /* White background for the form */
+    padding: 30px;
+    width: 400px; /* Slightly reduced width */
+    height: auto; /* Let the height adjust based on content */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px; /* Optional rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional, for a subtle shadow */
+    position: relative; /* To position the close button inside the form */
+  }
+  
+  /* Close button */
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .close-button:hover {
+    color: #000; /* Change color on hover */
+  }
+  
+  /* Modal Header */
+  .modal-header {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  .profile-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    object-fit: cover; /* Ensures the image fits well */
+  }
+  
+  /* Title (Edit Profile) */
+  .edit-profile-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* Form elements */
+  .modal-body label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+    width: 100%;
+  }
+  
+  .form-control {
+    width: 100%; /* Make the input field take full width */
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /* Ensures padding is accounted for */
+    margin-bottom: 15px; /* Space between the fields */
+  }
+  
+  .form-control::placeholder {
+    color: #aaa; /* Lighter placeholder text */
+    font-size: 16px; /* Increased placeholder size */
+  }
+  
+  .modal-footer {
+    text-align: center;
+    margin-top: 15px;
+    width: 100%;
+  }
+  
+  .btn {
+    width: 100%; /* Make the update button stretch across the modal */
+    font-size: 16px;
+    padding: 12px;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .form-container {
+      width: 80%;
+      max-width: 400px; /* Make it responsive */
+      padding: 20px;
+    }
+  
+    .profile-icon {
+      width: 60px;
+      height: 60px;
+    }
+  
+    .form-control {
+      font-size: 14px;
+      padding: 10px;
+    }
+  
+    .btn {
+      font-size: 14px;
+    }
+  }
+  

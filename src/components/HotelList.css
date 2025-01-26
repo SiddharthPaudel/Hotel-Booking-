@@ -49,6 +49,9 @@ button.btn {
     font-weight: bold;
     border-radius: 15px;
 }
+
+
+  
   
 @media (max-width: 768px) {
     .hotel-box {

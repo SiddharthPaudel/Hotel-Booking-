@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Import the toast styles
+import 'react-toastify/dist/ReactToastify.css';
 import './SignUpPage.css';
 import { Navigate } from 'react-router-dom';
-
 
 const SignUpPage = () => {
   const [formData, setFormData] = useState({
@@ -14,7 +13,6 @@ const SignUpPage = () => {
     confirmPassword: '',
   });
   const [error, setError] = useState('');
- 
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -28,8 +26,6 @@ const SignUpPage = () => {
       return;
     }
 
-   
-    
     try {
       const response = await axios.post('http://localhost:5000/api/auth/register', {
         username: formData.username,
@@ -38,16 +34,19 @@ const SignUpPage = () => {
         role: 'user', // Default role
       });
 
+      const { username, email } = response.data; // Adjust according to the response structure
+      const userData = { username, email };
+
+      // Save user data in local storage
+      localStorage.setItem('registeredUser', JSON.stringify(userData));
+
       // Display success toast notification
       toast.success('Registration successful! You can now log in.');
       setError('');
+      
       setTimeout(() => Navigate('/login'), 2000); // Redirect after 2 seconds
-
-      setError('');
     } catch (err) {
-      // Display error toast notification
       toast.error('Registration failed. Please try again.');
-
       setError('');
     }
   };
@@ -122,10 +121,9 @@ const SignUpPage = () => {
           </div>
         </div>
 
-        <button className="btn btn-primary register-btn" type="submit" >
-  Register
-</button>
-
+        <button className="btn btn-primary register-btn" type="submit">
+          Register
+        </button>
 
         {error && <p className="error-message">{error}</p>}
 
@@ -140,7 +138,6 @@ const SignUpPage = () => {
         </div>
       </form>
 
-      {/* Toast Container for notifications */}
       <ToastContainer />
     </div>
   );

@@ -35,9 +35,17 @@ const LoginPage = () => {
       if (response.ok) {
         const data = await response.json();
 
+        // Assuming the response includes the customerId
+        const { email, token, name, customerId } = data;
+        console.log('Customer ID:', customerId); 
+
         // Store token and user data in context
-        login({ email: data.email, token: data.token, name: data.name });
-        
+        login({ email, token, name, customerId }); 
+
+        // Store customerId and token in localStorage for persistence across sessions
+        localStorage.setItem('customerId', customerId);
+        localStorage.setItem('token', token);
+
         toast.success('Login successful!', { position: 'top-center', autoClose: 3000 });
         setTimeout(() => navigate('/'), 3000); 
       } else {

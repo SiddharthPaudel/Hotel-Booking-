@@ -7,6 +7,12 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null); // Store user data
 
+  // Function to register a user
+  const register = (userData) => {
+    localStorage.setItem('user', JSON.stringify(userData)); // Store user info
+    setUser(userData); // Update user state
+  };
+
   // Function to login
   const login = (userData) => {
     setUser(userData);
@@ -21,18 +27,17 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('user');
   };
 
-  // Check for token in localStorage on initial load
+  // Check for token and user data in localStorage on initial load
   useEffect(() => {
-    const storedToken = localStorage.getItem('token');
     const storedUser = localStorage.getItem('user');
     
-    if (storedToken && storedUser) {
+    if (storedUser) {
       setUser(JSON.parse(storedUser)); // Set user state from localStorage
     }
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, register, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
