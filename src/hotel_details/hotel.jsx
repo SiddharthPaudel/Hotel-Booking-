@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Form, Button, InputGroup, FormControl } from "react-bootstrap";
+import  { useState } from "react";
+import { Form, Button} from "react-bootstrap";
 import { FaSearch } from "react-icons/fa"; // Search icon
 import { useDropzone } from "react-dropzone"; // For drag-and-drop
 import './hotel.css'; // Shared styles

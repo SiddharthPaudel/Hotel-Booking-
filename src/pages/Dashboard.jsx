@@ -83,8 +83,8 @@ const Dashboard = () => {
             <>
               <Row className="p-4">
                 <Col>
-                  <h3>Dashboard</h3>
-                  <p>Hi, Siddhartha</p>
+                  <h3>Welcome to Dashboard</h3>
+                   <p>Hi, Siddhartha</p>
                 </Col>
               </Row>
 

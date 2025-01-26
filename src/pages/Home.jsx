@@ -1,5 +1,4 @@
 
-import Hom from "../assets/home.jpg";
 import hom from "../assets/new_img.jpg";
 import './Home.css';
 

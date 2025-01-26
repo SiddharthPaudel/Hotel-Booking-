@@ -7,9 +7,8 @@ const AboutUs = () => {
   return (
     <div className="about-us-container">
       {/* What We Offer Section */}
-      <section className="offer-section">
+      <section className="offer-section" id="about"> {/* Added id="about" */}
         <h2 className="offer-title">What We Are</h2>
-       
       </section>
 
       {/* About Section with Image and Text */}
@@ -22,7 +21,6 @@ const AboutUs = () => {
           />
         </div>
         <div className="about-text">
-         
           <p>
             QuickStay is dedicated to making hotel booking effortless and
             enjoyable. With a wide selection of accommodations and a
@@ -31,8 +29,6 @@ const AboutUs = () => {
           </p>
         </div>
       </section>
-
-     
     </div>
   );
 };
