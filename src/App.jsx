@@ -13,6 +13,7 @@ import HotelPage from './components/Hotel/HotelPage';
 import Customer from './cutomer/customer';
 import { AuthProvider } from './context/AuthContext'; // Import AuthProvider
 
+
 function App() {
   return (
     <AuthProvider> {/* Wrap AppContent with AuthProvider */}
@@ -43,6 +44,8 @@ function AppContent() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/customer" element={<Customer />} />
+         
+          
         </Routes>
       </div>
 

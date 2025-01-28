@@ -1,31 +1,27 @@
 import React, { useState } from 'react';
 import { Table, InputGroup, FormControl } from 'react-bootstrap';
 import { FaSearch } from 'react-icons/fa'; // Import the FontAwesome search icon
-import './customer.css'
+import './customer.css';
 
 const Customer = () => {
-  // Example customer data
   const customers = [
     { id: 1, username: "JohnDoe", email: "john.doe@example.com" },
     { id: 2, username: "JaneSmith", email: "jane.smith@example.com" },
     // Add more customer data here
   ];
 
-  // State for search term
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Filter customers based on search term
   const filteredCustomers = customers.filter((customer) =>
     customer.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
     customer.email.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
-    <div className="customer-table-container">
-      <h3 className="customer-table-title">Customer Table</h3>
+    <div className="customer-container">
+      <h3 className="customer-title">Customer Table</h3>
 
-      {/* Search Bar with Icon */}
-      <InputGroup className="mb-3">
+      <InputGroup className="customer-input-group">
         <InputGroup.Text>
           <FaSearch />
         </InputGroup.Text>
@@ -38,8 +34,7 @@ const Customer = () => {
         />
       </InputGroup>
 
-      {/* Customer Table */}
-      <Table  hover className="modern-table">
+      <Table hover className="customer-modern-table">
         <thead>
           <tr>
             <th>#</th>
@@ -55,9 +50,8 @@ const Customer = () => {
               <td>{customer.username}</td>
               <td>{customer.email}</td>
               <td>
-                {/* Action buttons with a gap between them */}
-                <button className="btn btn-primary btn-sm">Edit</button>
-                <button className="btn btn-danger btn-sm ml-3">Delete</button>
+                <button className="customer-btn customer-btn-primary">Edit</button>
+                <button className="customer-btn customer-btn-danger customer-ml-3">Delete</button>
               </td>
             </tr>
           ))}

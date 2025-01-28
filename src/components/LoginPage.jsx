@@ -13,7 +13,7 @@ const LoginPage = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+  
     try {
       if (email === 'admin@gmail.com' && password === 'admin@123') {
         // Admin login process
@@ -23,7 +23,7 @@ const LoginPage = () => {
         setTimeout(() => navigate('/dashboard'), 3000);
         return;
       }
-
+  
       const response = await fetch('http://localhost:5000/api/auth/login', {
         method: 'POST',
         headers: {
@@ -31,23 +31,22 @@ const LoginPage = () => {
         },
         body: JSON.stringify({ email, password }),
       });
-
+  
       if (response.ok) {
         const data = await response.json();
-
-        // Assuming the response includes the customerId
-        const { email, token, name, customerId } = data;
-        console.log('Customer ID:', customerId); 
-
-        // Store token and user data in context
-        login({ email, token, name, customerId }); 
-
-        // Store customerId and token in localStorage for persistence across sessions
+  
+        // Extract necessary data from the response
+        const { email, token, customerId, name } = data;
+  
+        // Store token, customerId, and user data in context
+        login({ email, token, customerId, name });
+  
+        // Persist customerId and token in localStorage
         localStorage.setItem('customerId', customerId);
         localStorage.setItem('token', token);
-
+  
         toast.success('Login successful!', { position: 'top-center', autoClose: 3000 });
-        setTimeout(() => navigate('/'), 3000); 
+        setTimeout(() => navigate('/'), 3000);
       } else {
         toast.error('Invalid email or password', { position: 'top-center', autoClose: 3000 });
       }
@@ -56,6 +55,7 @@ const LoginPage = () => {
       toast.error('Something went wrong. Please try again later.', { position: 'top-center', autoClose: 3000 });
     }
   };
+  
 
   return (
     <div className="login-container">

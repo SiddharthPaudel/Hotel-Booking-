@@ -1,80 +1,104 @@
-import { useState } from 'react';
+import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
-import profile from "../assets/user.png"; // Profile image
-import './ProfileModal.css'; // Add styles for the modal
-import { toast } from 'react-toastify'; // Import toast from react-toastify
-import 'react-toastify/dist/ReactToastify.css'; // Import CSS for Toastify
+import profile from "../assets/user.png";
+import { toast } from "react-toastify";
+import { useSpring, animated } from "@react-spring/web";
+import "./ProfileModal.css"; // CSS for styling
+import "react-toastify/dist/ReactToastify.css";
 
 const ProfileModal = ({ showModal, onClose }) => {
-  const { user, logout } = useAuth();
+  const { user, setUser, customerId: contextCustomerId } = useAuth();
   const [formData, setFormData] = useState({
-    username: user?.username || '',
-    email: user?.email || '',
+    username: user?.username || "",
+    email: user?.email || "",
   });
-  const [loading, setLoading] = useState(false); // To handle loading state
-  const [error, setError] = useState(null); // To store any error
+  const [loading, setLoading] = useState(false);
+
+  const [customerId, setCustomerId] = useState(null);
+
+  // Modal animation for smooth fade-in and scale-up
+  const modalAnimation = useSpring({
+    opacity: showModal ? 1 : 0,
+    transform: showModal ? "scale(1)" : "scale(0.9)",
+    config: { tension: 200, friction: 20 },
+  });
+
+  useEffect(() => {
+    if (contextCustomerId) {
+      setCustomerId(contextCustomerId);
+    } else {
+      const storedCustomerId = localStorage.getItem("customerId");
+      if (storedCustomerId) {
+        setCustomerId(storedCustomerId);
+      }
+    }
+  }, [contextCustomerId]);
+
+  useEffect(() => {
+    if (user) {
+      setFormData({
+        username: user.username || "",
+        email: user.email || "",
+      });
+    }
+  }, [user, showModal]);
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleUpdate = async () => {
-    const customerId = localStorage.getItem('customerId'); // Get customerId from localStorage
-  
-    // Check if customerId exists
     if (!customerId) {
-      console.error('Customer ID is missing');
-      toast.error('Customer ID is missing!'); // Optionally notify user
-      return; // Exit early if no customerId is found
+      console.error("Customer ID is missing");
+      toast.error("Customer ID is missing! Please try again.");
+      return;
     }
-  
-    setLoading(true); // Set loading state while updating
-    setError(null); // Reset error state
-  
+
+    setLoading(true);
     try {
-      const response = await fetch(`http://localhost:5000/api/customers/${customerId}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData), // Send updated form data
-      });
-  
+      const response = await fetch(
+        `http://localhost:5000/api/customers/${customerId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
       if (!response.ok) {
-        throw new Error('Failed to update user data');
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to update profile");
       }
-  
-      const updatedUser = await response.json(); // Parse the updated customer data
-  
-      // Update localStorage with the updated user data
-      localStorage.setItem('user', JSON.stringify(updatedUser));
-  
-      // Optionally, update the context or global state if using a global state manager
-      // setUser(updatedUser); // Uncomment if needed for global state
-  
-      // Show success notification
-      toast.success('Profile updated successfully!');
-  
-      onClose(); // Close the modal after successful update
-  
+
+      const updatedUser = await response.json();
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+      if (setUser) {
+        setUser(updatedUser);
+      }
+
+      toast.success("Profile updated successfully!", {
+        position: "top-center",
+        autoClose: 3000,
+      });
+      onClose(); // Close modal
     } catch (error) {
-      console.error('Error:', error);
-      setError(error.message); // Set error message to display
-  
-      // Show error notification with the error message
-      toast.error(`Failed to update profile: ${error.message || 'Unknown error'}`);
+      console.error("Error updating profile:", error);
+      toast.error(`Failed to update profile: ${error.message}`);
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false);
     }
   };
-  
-  
 
   return (
     showModal && (
-      <div className="modal-container">
+      <animated.div className="modal-container" style={modalAnimation}>
         <div className="form-container">
-          <button className="close-button" onClick={onClose}>✖</button>
+          <button className="close-button" onClick={onClose}>
+            ✖
+          </button>
           <div className="modal-header">
             <img src={profile} alt="Profile Icon" className="profile-icon" />
             <h2>Edit Profile</h2>
@@ -97,18 +121,17 @@ const ProfileModal = ({ showModal, onClose }) => {
               className="form-control"
             />
           </div>
-          {error && <div className="error-message">{error}</div>} {/* Display error */}
           <div className="modal-footer">
-            <button 
-              className="btn btn-primary" 
+            <button
+              className="btn btn-primary"
               onClick={handleUpdate}
-              disabled={loading} // Disable the button while loading
+              disabled={loading}
             >
-              {loading ? 'Updating...' : 'Update'}
+              {loading ? "Updating..." : "Update"}
             </button>
           </div>
         </div>
-      </div>
+      </animated.div>
     )
   );
 };

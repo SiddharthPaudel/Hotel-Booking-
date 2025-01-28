@@ -13,6 +13,11 @@ const SignUpPage = () => {
     confirmPassword: '',
   });
   const [error, setError] = useState('');
+  const [redirect, setRedirect] = useState(false);
+
+if (redirect) {
+  return <Navigate to="/login" />;
+}
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -20,12 +25,12 @@ const SignUpPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
     if (formData.password !== formData.confirmPassword) {
       toast.error('Passwords do not match. Please try again.');
       return;
     }
-
+    
     try {
       const response = await axios.post('http://localhost:5000/api/auth/register', {
         username: formData.username,
@@ -33,23 +38,31 @@ const SignUpPage = () => {
         password: formData.password,
         role: 'user', // Default role
       });
-
-      const { username, email } = response.data; // Adjust according to the response structure
-      const userData = { username, email };
-
-      // Save user data in local storage
-      localStorage.setItem('registeredUser', JSON.stringify(userData));
-
-      // Display success toast notification
-      toast.success('Registration successful! You can now log in.');
-      setError('');
-      
-      setTimeout(() => Navigate('/login'), 2000); // Redirect after 2 seconds
+  
+      const { user } = response.data; // Ensure this has the customerId you expect
+      console.log('Backend Response:', response.data); // Log response to check customerId
+      if (user && user._id) {
+        const userData = { customerId: user._id, username: user.username, email: user.email };
+        console.log('User Data:', userData); // Verify userData
+  
+        // Save user data in localStorage
+        localStorage.setItem('user', JSON.stringify(userData));
+        localStorage.setItem('customerId', userData.customerId); // Ensure customerId is saved
+  
+        toast.success('Registration successful! You can now log in.');
+  
+        setTimeout(() => (window.location.href = '/login'), 2000); // Redirect after 2 seconds
+      } else {
+        console.log('User data is incomplete or missing customerId.');
+      }
     } catch (err) {
       toast.error('Registration failed. Please try again.');
-      setError('');
+      console.error(err);
     }
   };
+  
+  
+  
 
   return (
     <div className="registration-container">

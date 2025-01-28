@@ -107,8 +107,17 @@
   }
 }
 
-.dropdown-menu {
-  animation: fadeSlideIn 0.3s ease-out;
+.dropdown-item {
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+  transform: translateX(5px);
+}
+
+.dropdown-divider {
+  border-color: #e4e4e4;
 }
 
 
