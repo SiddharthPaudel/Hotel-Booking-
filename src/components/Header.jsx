@@ -109,14 +109,14 @@ const Header = () => {
                             objectFit: "contain",
                           }}
                         />
-                        Profile
+                     <small>{user.username}</small> 
                       </button>
                     </li>
 
                     {/* Username Display */}
                     <li>
                       <a className="dropdown-item text-muted">
-                        <small>{user.username}</small>
+                        <small>{user.email}</small>
                       </a>
                     </li>
 

@@ -6,8 +6,10 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // ✅ Check if JWT token is valid
   const isTokenValid = (token) => {
     try {
+      if (!token) return false;
       const payload = JSON.parse(atob(token.split('.')[1])); // Decode JWT payload
       return payload.exp * 1000 > Date.now();
     } catch (error) {
@@ -16,6 +18,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  // ✅ Refresh JWT token if expired
   const refreshToken = async () => {
     try {
       const response = await fetch('http://localhost:5000/api/auth/refresh', {
@@ -23,37 +26,52 @@ export const AuthProvider = ({ children }) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ token: localStorage.getItem('token') }),
       });
+
       if (response.ok) {
         const data = await response.json();
-        localStorage.setItem('token', data.token); // Update token
+        localStorage.setItem('token', data.token);
         return data.token;
+      } else {
+        console.error('Failed to refresh token, logging out');
+        logout();
       }
     } catch (error) {
       console.error('Error refreshing token:', error);
+      logout();
     }
     return null;
   };
 
+  // ✅ Register user
   const register = (userData) => {
     localStorage.setItem('user', JSON.stringify(userData));
-    localStorage.setItem('customerId', userData.customerId); // Store customerId
     setUser(userData);
   };
 
+  // ✅ Login user and store details
   const login = (userData) => {
-    localStorage.setItem('user', JSON.stringify(userData));
-    localStorage.setItem('token', userData.token); // Store token
-    localStorage.setItem('customerId', userData.customerId); // Store customerId
-    setUser(userData);
+    console.log("User data received at login:", userData); // Debugging log
+  
+    const updatedUser = {
+      email: userData.email,
+      username: userData.username || userData.name || "User", // Ensure correct username mapping
+      customerId: userData.customerId,
+      token: userData.token,
+    };
+  
+    setUser(updatedUser);
+    localStorage.setItem("user", JSON.stringify(updatedUser));
+    console.log("User state after login:", updatedUser); // Debugging log
   };
+  
 
+  // ✅ Logout and clear all authentication data
   const logout = () => {
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
-    localStorage.removeItem('customerId');
+    localStorage.clear(); // Clears all stored authentication data
     setUser(null);
   };
 
+  // ✅ Load authentication state on app start
   useEffect(() => {
     const initializeAuth = async () => {
       try {
@@ -86,15 +104,16 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const isLoggedIn = !!user;
-  const customerId = user?.customerId || null; // Access customerId from user state
+  const customerId = user?.customerId || null;
 
   return (
-    <AuthContext.Provider value={{ user, setUser,customerId, isLoggedIn, register, login, logout }}>
-      {!loading && children}
+    <AuthContext.Provider value={{ user, setUser, customerId, isLoggedIn, register, login, logout }}>
+      {loading ? <div>Loading...</div> : children}
     </AuthContext.Provider>
   );
 };
 
+// ✅ Custom hook for authentication
 export const useAuth = () => {
   return useContext(AuthContext);
 };

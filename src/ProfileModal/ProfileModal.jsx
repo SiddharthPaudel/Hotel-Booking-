@@ -101,7 +101,7 @@ const ProfileModal = ({ showModal, onClose }) => {
           </button>
           <div className="modal-header">
             <img src={profile} alt="Profile Icon" className="profile-icon" />
-            <h2>Edit Profile</h2>
+            <h2>{user.username}</h2>
           </div>
           <div className="modal-body">
             <label>Username:</label>
