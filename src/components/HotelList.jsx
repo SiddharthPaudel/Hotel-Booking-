@@ -1,4 +1,4 @@
-import React from "react";
+
 import "./HotelList.css"; // Custom styles
 import Hom from "../assets/home.jpg"; // Import your local image
 import Hotel2 from "../assets/blue_hotel.jpg"; // Import any additional images

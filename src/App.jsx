@@ -12,7 +12,8 @@ import './index.css';
 import HotelPage from './components/Hotel/HotelPage';
 import Customer from './cutomer/customer';
 import { AuthProvider } from './context/AuthContext'; // Import AuthProvider
-
+import { ToastContainer } from 'react-toastify'; // Import ToastContainer
+import 'react-toastify/dist/ReactToastify.css'; // Import toast styles
 
 function App() {
   return (
@@ -44,13 +45,14 @@ function AppContent() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/customer" element={<Customer />} />
-         
-          
         </Routes>
       </div>
 
       {/* Conditionally Render Footer */}
       {!hideHeaderFooter && <Footer />}
+
+      {/* ToastContainer for displaying toast notifications */}
+      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={true} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
     </div>
   );
 }

@@ -9,6 +9,7 @@ import "./hotel.css";
 const HotelForm = ({ onAddHotel }) => {
   const [newHotel, setNewHotel] = useState({
     name: "",
+    location: "", // Added location field
     image: "",
     imageFile: null, // Store the actual file
     description: "",
@@ -42,6 +43,7 @@ const HotelForm = ({ onAddHotel }) => {
     try {
       const formData = new FormData();
       formData.append("name", newHotel.name);
+      formData.append("location", newHotel.location); // Added location
       formData.append("description", newHotel.description);
       formData.append("pricePerNight", newHotel.pricePerNight);
       formData.append("rooms", newHotel.rooms);
@@ -64,12 +66,13 @@ const HotelForm = ({ onAddHotel }) => {
       console.log("Hotel added successfully:", response);
   
       // If the hotel is successfully added, show success message
-      if (response.status === 200) {
-        toast.success('Hotel added successfully!', { position: 'top-right', autoClose: 3000 });
+      if (response.status === 201) {
+        toast.success("Hotel added successfully!", { position: "top-right", autoClose: 3000 });
   
         // Reset the form after success
         setNewHotel({
           name: "",
+          location: "", // Reset location
           image: "",
           imageFile: null, // Reset file
           description: "",
@@ -79,10 +82,9 @@ const HotelForm = ({ onAddHotel }) => {
       }
     } catch (error) {
       console.error("Error adding hotel:", error);
-      toast.error('Failed to add hotel', { position: 'top-center', autoClose: 3000 });
+      toast.error("Failed to add hotel", { position: "top-center", autoClose: 3000 });
     }
   };
-  
 
   return (
     <div className="add-hotel-form">
@@ -96,6 +98,17 @@ const HotelForm = ({ onAddHotel }) => {
             value={newHotel.name}
             onChange={handleInputChange}
             placeholder="Enter hotel name"
+          />
+        </Form.Group>
+
+        <Form.Group controlId="formHotelLocation">
+          <Form.Label>Location</Form.Label>
+          <Form.Control
+            type="text"
+            name="location"
+            value={newHotel.location}
+            onChange={handleInputChange}
+            placeholder="Enter hotel location"
           />
         </Form.Group>
 
@@ -144,6 +157,7 @@ const HotelForm = ({ onAddHotel }) => {
         <div className="d-flex justify-content-center mt-3">
           <Button variant="primary" type="button" onClick={handleAddHotel}>
             Add Hotel
+            
           </Button>
         </div>
       </Form>
