@@ -54,6 +54,18 @@ const Sidebar = ({ setActiveSection }) => {
             <Nav.Link onClick={() => setActiveSection("hotel")} className="nav-link">
               <img
                 src={hotel}
+                alt="Hotel "
+                style={{
+                  width: "24px",
+                  height: "24px",
+                  objectFit: "contain",
+                  marginRight: "10px",
+                }}
+              /> Hotel
+            </Nav.Link>
+            <Nav.Link onClick={() => setActiveSection("HotelTable")} className="nav-link">
+              <img
+                src={stay}
                 alt="Hotel Details"
                 style={{
                   width: "24px",
@@ -62,18 +74,6 @@ const Sidebar = ({ setActiveSection }) => {
                   marginRight: "10px",
                 }}
               /> Hotel Details
-            </Nav.Link>
-            <Nav.Link onClick={() => setActiveSection("HotelTable")} className="nav-link">
-              <img
-                src={stay}
-                alt="Hotel"
-                style={{
-                  width: "24px",
-                  height: "24px",
-                  objectFit: "contain",
-                  marginRight: "10px",
-                }}
-              /> Hotel
             </Nav.Link>
             <Nav.Link onClick={() => setActiveSection("booking")} className="nav-link">
               <img

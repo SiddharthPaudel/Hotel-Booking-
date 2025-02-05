@@ -10,7 +10,6 @@ const Customer = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch registered users from API
   useEffect(() => {
     setLoading(true);
     axios
@@ -44,7 +43,6 @@ const Customer = () => {
       });
   };
 
-  // Filter users based on search
   const filteredCustomers = customers.filter(
     (customer) =>
       customer.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -77,7 +75,7 @@ const Customer = () => {
           {filteredCustomers.length === 0 ? (
             <p>No users found</p>
           ) : (
-            <Table hover className="customer-modern-table">
+            <Table hover responsive="sm" className="customer-table">
               <thead>
                 <tr>
                   <th>#</th>

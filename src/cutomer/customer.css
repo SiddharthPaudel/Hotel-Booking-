@@ -1,85 +1,106 @@
+/* Global body styles */
 body {
     font-family: 'Nunito', sans-serif;
 }
 
-/* Styling the container */
+/* Container styles */
 .customer-container {
-    padding: 20px;
-    background-color: #f8f9fa;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
-/* Title styling */
+/* Title styles */
 .customer-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
+    font-size: 26px;
+    font-weight: 600;
     color: #333;
     text-align: center;
+    margin-bottom: 30px;
 }
 
-/* Modern table styling */
-.customer-modern-table {
-    border-collapse: separate;
-    border-spacing: 0 10px;
+/* Table styles */
+.customer-table th,
+.customer-table td {
+    padding: 16px 20px;
+    text-align: center;
+    font-size: 14px;
 }
 
-.customer-modern-table thead th {
+/* Table header */
+.customer-table th {
     background-color: #007bff;
-    color: #fff;
-    text-align: center;
-    padding: 15px;
+    color: white;
+    font-weight: 500;
+    border: 1px solid #ddd;
+}
+
+/* Table row styles */
+.customer-table tbody tr {
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Hover effect for table rows */
+.customer-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Button styles */
+.customer-btn {
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 5px;
     border: none;
-    font-weight: bold;
+    cursor: pointer;
 }
 
-.customer-modern-table tbody tr {
-    background-color: #fff;
-    transition: none; /* Disable any transition effects */
+/* Primary button */
+.customer-btn-primary {
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s;
 }
 
-/* Remove hover effects */
-.customer-modern-table tbody tr:hover {
-    transform: none; /* Disable translation */
-    box-shadow: none; /* Disable shadow effect */
+.customer-btn-primary:hover {
+    background-color: #0056b3;
 }
 
-.customer-modern-table tbody td {
-    padding: 15px;
-    text-align: center;
-    border: none;
+/* Danger button */
+.customer-btn-danger {
+    background-color: #dc3545;
+    color: white;
+    transition: background-color 0.3s;
 }
 
-.customer-modern-table tbody tr td:first-child {
-    border-radius: 8px 0 0 8px;
+.customer-btn-danger:hover {
+    background-color: #c82333;
 }
 
-.customer-modern-table tbody tr td:last-child {
-    border-radius: 0 8px 8px 0;
+.customer-ml-3 {
+    margin-left: 12px;
 }
 
-/* Responsive table container */
-.customer-table-responsive {
-    overflow-x: auto;
-}
-
-/* Styling the search bar */
-/* Input Group Styling */
+/* Search input group styles */
 .customer-input-group {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     max-width: 400px;
     margin-left: auto;
     margin-right: auto;
-    display: flex; /* Ensures the icon and input align horizontally */
-    align-items: center; /* Aligns the icon vertically with the input */
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
 }
 
+/* Styling search input */
 .customer-input-group .form-control {
-    border-radius: 0 8px 8px 0; /* Matches the icon's left-radius */
-    border-left: none; /* Avoids double border between icon and input */
-    height: 38px; /* Ensures consistent height with the icon container */
-    box-shadow: none; /* Removes focus shadow */
+    border-radius: 8px;
+    border-left: none;
+    height: 38px;
+    box-shadow: none;
 }
 
 .customer-input-group .input-group-text {
@@ -90,47 +111,27 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 38px; /* Matches the input height */
-    padding: 0 12px; /* Provides adequate space for the icon */
+    height: 38px;
+    padding: 0 12px;
 }
 
 .customer-input-group .form-control:focus {
     box-shadow: none;
 }
 
-.customer-btn {
-    font-size: 12px;
-    padding: 5px 10px;
-}
-
-.customer-btn-primary {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-}
-
-.customer-btn-danger {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 4px;
-}
-
-.customer-ml-3 {
-    margin-left: 12px; /* Adjust the value to your preference */
-}
-
+/* Responsive Design */
 @media (max-width: 768px) {
     .customer-title {
-        font-size: 20px;
+        font-size: 22px;
     }
 
-    .customer-modern-table thead th {
-        font-size: 14px;
-    }
-
-    .customer-modern-table tbody td {
+    .customer-table th,
+    .customer-table td {
         font-size: 13px;
+        padding: 12px 15px;
+    }
+
+    .customer-btn {
+        font-size: 12px;
     }
 }

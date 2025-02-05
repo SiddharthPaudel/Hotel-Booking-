@@ -2,34 +2,39 @@ import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify"; // Import Toastify
-import "react-toastify/dist/ReactToastify.css"; // Import Toastify styles
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./hotel.css";
 
 const HotelForm = ({ onAddHotel }) => {
   const [newHotel, setNewHotel] = useState({
     name: "",
-    location: "", // Added location field
-    image: "",
-    imageFile: null, // Store the actual file
+    location: "",
+    images: [], // Store preview URLs
+    imageFiles: [], // Store actual files
     description: "",
     pricePerNight: "",
     rooms: "Available",
   });
 
-  // Handle file drop and store both preview and actual file
+  // Handle file drop for multiple images
   const onDrop = (acceptedFiles) => {
-    const file = acceptedFiles[0];
-    setNewHotel({
-      ...newHotel,
-      image: URL.createObjectURL(file), // Image preview
-      imageFile: file, // Store actual file
-    });
+    const newImages = acceptedFiles.map((file) => ({
+      preview: URL.createObjectURL(file), // Generate preview URL
+      file, // Store actual file
+    }));
+
+    setNewHotel((prev) => ({
+      ...prev,
+      images: [...prev.images, ...newImages.map((img) => img.preview)], // Store preview URLs
+      imageFiles: [...prev.imageFiles, ...newImages.map((img) => img.file)], // Store actual files
+    }));
   };
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: "image/*",
+    multiple: true, // Allow multiple images
   });
 
   // Handle input changes
@@ -43,38 +48,30 @@ const HotelForm = ({ onAddHotel }) => {
     try {
       const formData = new FormData();
       formData.append("name", newHotel.name);
-      formData.append("location", newHotel.location); // Added location
+      formData.append("location", newHotel.location);
       formData.append("description", newHotel.description);
       formData.append("pricePerNight", newHotel.pricePerNight);
       formData.append("rooms", newHotel.rooms);
   
-      // Append the file (image) to the form data if an image is selected
-      if (newHotel.imageFile) {
-        formData.append("file", newHotel.imageFile); // Attach the actual file
-      } else {
-        console.error("Image file is missing!");
-      }
+      // Append multiple images
+      newHotel.imageFiles.forEach((file) => {
+        formData.append("images", file); // 'images' must match multer.array('images', 5)
+      });
   
       // Send request to backend
       const response = await axios.post("http://localhost:5000/api/hotels", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+        headers: { "Content-Type": "multipart/form-data" },
       });
   
-      // Log the full response to the console to verify
-      console.log("Hotel added successfully:", response);
-  
-      // If the hotel is successfully added, show success message
       if (response.status === 201) {
         toast.success("Hotel added successfully!", { position: "top-right", autoClose: 3000 });
   
         // Reset the form after success
         setNewHotel({
           name: "",
-          location: "", // Reset location
-          image: "",
-          imageFile: null, // Reset file
+          location: "",
+          images: [],
+          imageFiles: [],
           description: "",
           pricePerNight: "",
           rooms: "Available",
@@ -85,6 +82,7 @@ const HotelForm = ({ onAddHotel }) => {
       toast.error("Failed to add hotel", { position: "top-center", autoClose: 3000 });
     }
   };
+  
 
   return (
     <div className="add-hotel-form">
@@ -112,14 +110,16 @@ const HotelForm = ({ onAddHotel }) => {
           />
         </Form.Group>
 
-        <Form.Group controlId="formHotelImage">
-          <Form.Label>Image</Form.Label>
+        <Form.Group controlId="formHotelImages">
+          <Form.Label>Images</Form.Label>
           <div {...getRootProps()} className="dropzone">
             <input {...getInputProps()} />
-            <p>Drag & drop an image here, or click to select</p>
-            {newHotel.image && (
-              <img src={newHotel.image} alt="Hotel" className="hotel-image-preview" width="100" height="70" />
-            )}
+            <p>Drag & drop images here, or click to select multiple</p>
+          </div>
+          <div className="image-preview-container">
+            {newHotel.images.map((src, index) => (
+              <img key={index} src={src} alt={`Hotel ${index}`} className="hotel-image-preview" width="100" height="70" />
+            ))}
           </div>
         </Form.Group>
 
@@ -157,12 +157,10 @@ const HotelForm = ({ onAddHotel }) => {
         <div className="d-flex justify-content-center mt-3">
           <Button variant="primary" type="button" onClick={handleAddHotel}>
             Add Hotel
-            
           </Button>
         </div>
       </Form>
 
-      {/* Toast Container */}
       <ToastContainer />
     </div>
   );
