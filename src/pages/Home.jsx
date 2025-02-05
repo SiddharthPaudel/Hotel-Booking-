@@ -4,8 +4,9 @@ import './Home.css';
 
 import Service from "../components/Service";
 import AboutUs from "../components/AboutUs";
-import HotelList from "../components/HotelList";
 import Quote from "../components/Quote";
+
+import HotelList from "../components/HotelList";
 
 
 const Home = () => {

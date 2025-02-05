@@ -1,73 +1,73 @@
-import React, { useState, useEffect } from 'react';
-import { Table, InputGroup, FormControl } from 'react-bootstrap';
-import { FaSearch } from 'react-icons/fa'; // Import the FontAwesome search icon
-import axios from 'axios'; // Import axios for making HTTP requests
-import './customer.css';
+import React, { useState, useEffect } from "react";
+import { Table, InputGroup, FormControl } from "react-bootstrap";
+import { FaSearch } from "react-icons/fa";
+import axios from "axios";
+import "./customer.css";
 
 const Customer = () => {
-  const [customers, setCustomers] = useState([]); // Ensure customers is initialized as an empty array
-  const [searchTerm, setSearchTerm] = useState('');
-  const [loading, setLoading] = useState(true); // Loading state for fetching data
-  const [error, setError] = useState(null); // Error state for handling fetch errors
+  const [customers, setCustomers] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
+  // Fetch registered users from API
   useEffect(() => {
-    axios.get('/api/customers')
+    setLoading(true);
+    axios
+      .get("http://localhost:5000/api/customers") // Ensure correct API endpoint
       .then((response) => {
-        console.log('API Response:', response.data);
-
-        // Check if the response contains data and it's an array
-        if (response.status === 200 && Array.isArray(response.data)) {
+        console.log("API Response:", response.data); // Debugging log
+        if (Array.isArray(response.data)) {
           setCustomers(response.data);
-        } else if (response.data && response.data.customers) {
-          // Handle case where the data structure might include 'customers' field
-          setCustomers(response.data.customers);
         } else {
-          setError('Invalid data format received from server');
+          setError("Invalid data format received from server");
         }
+        setLoading(false);
       })
-      .catch((error) => {
-        console.error('Error fetching customers:', error);
-        setError('Failed to load customers');
+      .catch((err) => {
+        console.error("Fetch Error:", err);
+        setError("Failed to load customers");
+        setLoading(false);
       });
   }, []);
 
+  // Delete a user
   const handleDelete = (id) => {
-    // Handle deleting a customer by their ID
     axios
-      .delete(`/api/customers/${id}`) // Backend route for deleting a customer
+      .delete(`http://localhost:5000/api/customers/${id}`)
       .then(() => {
-        setCustomers(customers.filter((customer) => customer._id !== id)); // Remove deleted customer from state
+        setCustomers(customers.filter((customer) => customer._id !== id));
       })
-      .catch((error) => {
-        setError('Failed to delete customer');
+      .catch((err) => {
+        console.error("Delete Error:", err);
+        setError("Failed to delete customer");
       });
   };
 
-  const filteredCustomers = Array.isArray(customers)
-    ? customers.filter((customer) =>
-        customer.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        customer.email.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    : [];
+  // Filter users based on search
+  const filteredCustomers = customers.filter(
+    (customer) =>
+      customer.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      customer.email.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="customer-container">
-      <h3 className="customer-title">Customer Table</h3>
+      <h3 className="customer-title">Registered Users</h3>
 
+      {/* Search Input */}
       <InputGroup className="customer-input-group">
         <InputGroup.Text>
           <FaSearch />
         </InputGroup.Text>
         <FormControl
           placeholder="Search by Username or Email"
-          aria-label="Search"
-          aria-describedby="basic-addon1"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </InputGroup>
 
-      {/* Loading or error state */}
+      {/* Show Loading, Error, or Data */}
       {loading ? (
         <p>Loading customers...</p>
       ) : error ? (
@@ -75,7 +75,7 @@ const Customer = () => {
       ) : (
         <div>
           {filteredCustomers.length === 0 ? (
-            <p>No customers found</p>
+            <p>No users found</p>
           ) : (
             <Table hover className="customer-modern-table">
               <thead>
@@ -87,16 +87,18 @@ const Customer = () => {
                 </tr>
               </thead>
               <tbody>
-                {filteredCustomers.map((customer) => (
-                  <tr key={customer._id}>
-                    <td>{customer._id}</td>
-                    <td>{customer.username}</td>
-                    <td>{customer.email}</td>
+                {filteredCustomers.map((customer, index) => (
+                  <tr key={customer._id || index}>
+                    <td>{index + 1}</td>
+                    <td>{customer?.username || "No Username"}</td>
+                    <td>{customer?.email || "No Email"}</td>
                     <td>
-                      <button className="customer-btn customer-btn-primary">Edit</button>
+                      <button className="customer-btn customer-btn-primary">
+                        Edit
+                      </button>
                       <button
                         className="customer-btn customer-btn-danger customer-ml-3"
-                        onClick={() => handleDelete(customer._id)} // Trigger delete action
+                        onClick={() => handleDelete(customer._id)}
                       >
                         Delete
                       </button>

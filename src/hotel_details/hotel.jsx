@@ -1,43 +1,88 @@
-import  { useState } from "react";
-import { Form, Button} from "react-bootstrap";
-import { FaSearch } from "react-icons/fa"; // Search icon
-import { useDropzone } from "react-dropzone"; // For drag-and-drop
-import './hotel.css'; // Shared styles
+import { useState } from "react";
+import { Form, Button } from "react-bootstrap";
+import { useDropzone } from "react-dropzone";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify"; // Import Toastify
+import "react-toastify/dist/ReactToastify.css"; // Import Toastify styles
+import "./hotel.css";
 
 const HotelForm = ({ onAddHotel }) => {
   const [newHotel, setNewHotel] = useState({
     name: "",
     image: "",
+    imageFile: null, // Store the actual file
     description: "",
     pricePerNight: "",
     rooms: "Available",
   });
 
-  const [searchTerm, setSearchTerm] = useState("");
-
-  // Handle image upload (drag and drop or file picker)
+  // Handle file drop and store both preview and actual file
   const onDrop = (acceptedFiles) => {
     const file = acceptedFiles[0];
-    setNewHotel({ ...newHotel, image: URL.createObjectURL(file) });
+    setNewHotel({
+      ...newHotel,
+      image: URL.createObjectURL(file), // Image preview
+      imageFile: file, // Store actual file
+    });
   };
 
-  // Set up the dropzone
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
-    accept: "image/*", // Accept only images
+    accept: "image/*",
   });
 
-  // Handle form changes
+  // Handle input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewHotel({ ...newHotel, [name]: value });
   };
 
   // Handle form submission
-  const handleAddHotel = () => {
-    onAddHotel(newHotel);
-    setNewHotel({ name: "", image: "", description: "", pricePerNight: "", rooms: "Available" });
+  const handleAddHotel = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("name", newHotel.name);
+      formData.append("description", newHotel.description);
+      formData.append("pricePerNight", newHotel.pricePerNight);
+      formData.append("rooms", newHotel.rooms);
+  
+      // Append the file (image) to the form data if an image is selected
+      if (newHotel.imageFile) {
+        formData.append("file", newHotel.imageFile); // Attach the actual file
+      } else {
+        console.error("Image file is missing!");
+      }
+  
+      // Send request to backend
+      const response = await axios.post("http://localhost:5000/api/hotels", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+  
+      // Log the full response to the console to verify
+      console.log("Hotel added successfully:", response);
+  
+      // If the hotel is successfully added, show success message
+      if (response.status === 200) {
+        toast.success('Hotel added successfully!', { position: 'top-right', autoClose: 3000 });
+  
+        // Reset the form after success
+        setNewHotel({
+          name: "",
+          image: "",
+          imageFile: null, // Reset file
+          description: "",
+          pricePerNight: "",
+          rooms: "Available",
+        });
+      }
+    } catch (error) {
+      console.error("Error adding hotel:", error);
+      toast.error('Failed to add hotel', { position: 'top-center', autoClose: 3000 });
+    }
   };
+  
 
   return (
     <div className="add-hotel-form">
@@ -54,20 +99,13 @@ const HotelForm = ({ onAddHotel }) => {
           />
         </Form.Group>
 
-        {/* Drag-and-Drop Image Upload */}
         <Form.Group controlId="formHotelImage">
           <Form.Label>Image</Form.Label>
           <div {...getRootProps()} className="dropzone">
             <input {...getInputProps()} />
             <p>Drag & drop an image here, or click to select</p>
             {newHotel.image && (
-              <img
-                src={newHotel.image}
-                alt="Hotel"
-                className="hotel-image-preview"
-                width="100"
-                height="70"
-              />
+              <img src={newHotel.image} alt="Hotel" className="hotel-image-preview" width="100" height="70" />
             )}
           </div>
         </Form.Group>
@@ -96,29 +134,22 @@ const HotelForm = ({ onAddHotel }) => {
 
         <Form.Group controlId="formHotelRooms">
           <Form.Label>Room Status</Form.Label>
-          <Form.Control
-            as="select"
-            name="rooms"
-            value={newHotel.rooms}
-            onChange={handleInputChange}
-          >
+          <Form.Control as="select" name="rooms" value={newHotel.rooms} onChange={handleInputChange}>
             <option value="Available">Available</option>
             <option value="Booked">Booked</option>
             <option value="Under Maintenance">Under Maintenance</option>
           </Form.Control>
         </Form.Group>
 
-        {/* Center Add Hotel Button */}
         <div className="d-flex justify-content-center mt-3">
-          <Button
-            variant="primary"
-            type="button"
-            onClick={handleAddHotel}
-          >
+          <Button variant="primary" type="button" onClick={handleAddHotel}>
             Add Hotel
           </Button>
         </div>
       </Form>
+
+      {/* Toast Container */}
+      <ToastContainer />
     </div>
   );
 };
