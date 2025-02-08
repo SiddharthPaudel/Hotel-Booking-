@@ -40,10 +40,10 @@ const ContactTable = () => {
   };
 
   return (
-    <div className="container my-5">
-      <h3 className="text-center mb-4">Contact Form Submissions</h3>
-      <Table responsive="sm" className="table-modern">
-        <thead className="thead-custom">
+    <div className="contact-table-container my-5">
+      <h3 className="contact-table-header mb-4">Contact Form Submissions</h3>
+      <Table responsive="sm" className="contact-table">
+        <thead className="contact-table-header-custom">
           <tr>
             <th>Name</th>
             <th>Email</th>
@@ -55,7 +55,7 @@ const ContactTable = () => {
         </thead>
         <tbody>
           {contactRequests.map((request) => (
-            <tr key={request._id} className="table-row">
+            <tr key={request._id} className="contact-table-row">
               <td>{request.name}</td>
               <td>{request.email}</td>
               <td>{request.phone}</td>

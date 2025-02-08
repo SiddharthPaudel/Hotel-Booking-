@@ -1,11 +1,11 @@
 /* General Styling */
-.container {
+.contact-table-container {
     max-width: 1200px;
     margin: auto;
     padding: 20px;
   }
   
-  h3 {
+  .contact-table-header {
     font-size: 1.8rem;
     font-weight: 600;
     color: #333;
@@ -14,30 +14,30 @@
   }
   
   /* Table Styling */
-  .table-modern {
+  .contact-table {
     width: 100%;
     border-collapse: collapse;
     border: 1px solid #ddd;
   }
   
-  .thead-custom {
+  .contact-table-header-custom {
     background-color: #f4f4f4;
     color: #555;
   }
   
-  .table-modern th,
-  .table-modern td {
+  .contact-table th,
+  .contact-table td {
     padding: 12px 20px;
     text-align: left;
     font-size: 14px;
     color: #333;
   }
   
-  .table-modern tr:hover {
+  .contact-table tr:hover {
     background-color: #f9f9f9;
   }
   
-  .table-modern th {
+  .contact-table th {
     font-weight: bold;
   }
   
@@ -55,8 +55,8 @@
   
   /* Responsive Design */
   @media (max-width: 767px) {
-    .table-modern th,
-    .table-modern td {
+    .contact-table th,
+    .contact-table td {
       font-size: 12px;
     }
   }

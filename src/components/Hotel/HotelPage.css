@@ -1,8 +1,60 @@
+/* General styles for the hotel page */
 .hotel-page {
   font-family: 'Nunito', sans-serif;
 }
 
-.hotel-page .hotel-card {
+/* Styling for the search form */
+.hotel-search-form {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.hotel-search-input {
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  padding: 8px 12px;
+  font-size: 14px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hotel-search-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  outline: none;
+}
+
+.hotel-search-btn {
+  height: 40px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-bottom: 15px;
+}
+
+.hotel-search-btn:hover {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+}
+
+.hotel-search-btn:active {
+  transform: translateY(0);
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+/* Styling for the hotel cards */
+.hotel-card {
   border-radius: 12px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -10,38 +62,51 @@
   margin: 0 auto;
 }
 
-.hotel-page .hotel-card:hover {
+.hotel-card:hover {
   transform: scale(1.03);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-.hotel-page .hotel-card img {
+.hotel-card img {
   height: 220px;
   width: 100%;
   object-fit: cover;
   border-radius: 12px 12px 0 0;
 }
 
-.hotel-page .hotel-card .card-body {
+.hotel-card .card-body {
   padding: 1rem;
 }
 
-.hotel-page .hotel-card .card-title {
+.hotel-card .card-title {
   font-weight: 600;
   font-size: 1.4rem;
 }
 
-.hotel-page .hotel-card .card-text {
+.hotel-card .card-text {
   margin-bottom: 0.5rem;
 }
 
-.hotel-page .hotel-card button {
+.hotel-card button {
   font-weight: 600;
   letter-spacing: 0.5px;
 }
 
+/* Responsive adjustments */
 @media (max-width: 768px) {
-  .hotel-page .hotel-card img {
+  .hotel-card img {
     height: 180px;
+  }
+
+  .hotel-search-form {
+    padding: 15px;
+  }
+
+  .hotel-search-input {
+    font-size: 13px;
+  }
+
+  .hotel-search-btn {
+    font-size: 14px;
   }
 }
