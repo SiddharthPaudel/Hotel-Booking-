@@ -15,6 +15,7 @@ import CustomerTable from "../cutomer/customer"; // Import the Customer Table co
 import HotelDetails from "../hotel_details/hotel"; // Import other sections (e.g., Reports)
 import HotelTable from "../hotel_table/HotelTable"
 import BookingTable from "../booking/Booking"; // Import other sections (e.g., Settings)
+import ContactTable from "../contact/ContactTable";
 import { useState } from "react";
 import "./dashboard.css"; // Import the CSS file
 
@@ -152,6 +153,11 @@ const Dashboard = () => {
             {activeSection === "booking" && (
               <Col md={12}>
                 <BookingTable /> {/* Render the Settings component */}
+              </Col>
+            )}
+            {activeSection === "contact" && (
+              <Col md={12}>
+                <ContactTable/> {/* Render the Settings component */}
               </Col>
             )}
           </Row>

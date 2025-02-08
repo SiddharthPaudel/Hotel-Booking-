@@ -7,6 +7,7 @@ import book from "../assets/booking.png";
 import hotel from "../assets/resort.png";
 import customer from "../assets/customer_details.png";
 import stay from "../assets/stay.png"
+import speak from "../assets/speak.png"
 
 const Sidebar = ({ setActiveSection }) => {
   const handleLogout = () => {
@@ -87,7 +88,20 @@ const Sidebar = ({ setActiveSection }) => {
                 }}
               /> Booking
             </Nav.Link>
+            <Nav.Link onClick={() => setActiveSection("contact")} className="nav-link">
+              <img
+                src={speak}
+                alt="Booking"
+                style={{
+                  width: "24px",
+                  height: "24px",
+                  objectFit: "contain",
+                  marginRight: "10px",
+                }}
+              /> Contact
+            </Nav.Link>
           </Nav>
+          
         </div>
 
         {/* Settings & Logout buttons */}

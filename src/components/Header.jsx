@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
 import { useAuth } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
-import { FaSignOutAlt } from "react-icons/fa";
 import ProfileModal from "../ProfileModal/ProfileModal"; // Import the new ProfileModal component
 import "./Header.css";
 import profile from "../assets/user.png";
@@ -62,6 +61,16 @@ const Header = () => {
                   className="nav-link px-3"
                 >
                   Service
+                </ScrollLink>
+              </li>
+              <li>
+                <ScrollLink
+                  to="ContactUs"
+                  smooth={true}
+                  duration={100}
+                  className="nav-link px-3"
+                >
+                  ContactUs
                 </ScrollLink>
               </li>
               <li>

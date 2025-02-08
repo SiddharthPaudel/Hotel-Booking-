@@ -7,6 +7,7 @@ import AboutUs from "../components/AboutUs";
 import Quote from "../components/Quote";
 
 import HotelList from "../components/HotelList";
+import ContactForm from "../contact/ContactForm";
 
 
 const Home = () => {
@@ -28,6 +29,8 @@ const Home = () => {
       <HotelList/>
       <br/>
       <Quote/>
+      <br/>
+      <ContactForm/>
 
       
 

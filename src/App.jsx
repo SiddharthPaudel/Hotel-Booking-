@@ -14,6 +14,7 @@ import Customer from './cutomer/customer';
 import { AuthProvider } from './context/AuthContext'; // Import AuthProvider
 import { ToastContainer } from 'react-toastify'; // Import ToastContainer
 import 'react-toastify/dist/ReactToastify.css'; // Import toast styles
+import Contact from './contact/ContactForm';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function AppContent() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutUs />} />
+          <Route path="/ContactUs" element={<Contact />} />
           <Route path="/service" element={<Service />} />
           <Route path="/hotel" element={<HotelPage />} />
           <Route path="/login" element={<Login />} />
@@ -52,7 +54,7 @@ function AppContent() {
       {!hideHeaderFooter && <Footer />}
 
       {/* ToastContainer for displaying toast notifications */}
-      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={true} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+      <ToastContainer position="top-right" autoClose={2000} hideProgressBar={false} newestOnTop={true} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
     </div>
   );
 }
