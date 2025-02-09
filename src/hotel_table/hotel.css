@@ -1,20 +1,36 @@
-.search-bar-wrapper {
+/* Styling for the entire table container */
+.hotel-table-container {
+  margin-top: 30px;
+  font-family: Arial, sans-serif;
+}
+
+/* Title styling */
+.hotel-table-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Search bar styling */
+.hotel-search-bar-wrapper {
   display: flex;
-  align-items: center; /* Vertically align the input and button */
+  align-items: center;
   justify-content: center;
   margin-bottom: 20px;
 }
 
-.search-input {
-  flex-grow: 1; /* Allow the search input to take up remaining space */
+.hotel-search-input {
+  flex-grow: 1;
   padding: 10px;
   font-size: 16px;
   border-radius: 4px;
   border: 1px solid #ccc;
-  margin-right: 10px; /* Space between the input and button */
+  margin-right: 10px;
 }
 
-.search-button {
+.hotel-search-button {
   padding: 10px 15px;
   background-color: #007bff;
   border: 1px solid #007bff;
@@ -25,71 +41,70 @@
   justify-content: center;
 }
 
-.search-button:hover {
+.hotel-search-button:hover {
   background-color: #0056b3;
   border-color: #0056b3;
 }
 
-.search-icon {
+.hotel-search-icon {
   font-size: 18px;
 }
 
-.hotel-table-title {
-  text-align: center;
-  margin-bottom: 2rem;
-  font-size: 2rem;
-  font-weight: bold;
-  color: #333;
-}
-
-.table-wrapper {
+/* Styling for the table wrapper */
+.hotel-table-wrapper {
   overflow-x: auto;
 }
 
-.modern-table {
+/* Modern table styling */
+.hotel-modern-table {
   width: 100%;
   border-collapse: collapse;
   border: 1px solid #ddd;
   margin-bottom: 2rem;
 }
 
-.modern-table th,
-.modern-table td {
+.hotel-modern-table th,
+.hotel-modern-table td {
   padding: 12px 20px;
   text-align: left;
   font-size: 14px;
   color: #333;
 }
 
-.modern-table th {
+.hotel-modern-table th {
   background-color: #f4f4f4;
 }
 
-.modern-table tr:hover {
+.hotel-modern-table tr:hover {
   background-color: #f9f9f9;
 }
 
-button {
+/* Button styling */
+.hotel-action-button {
   border-radius: 4px;
   padding: 8px 16px;
   transition: background-color 0.3s;
 }
 
-button:hover {
+.hotel-action-button:hover {
   cursor: pointer;
   background-color: #f0f0f0;
 }
 
-.modal-title {
-  font-size: 1.5rem;
+/* Modal form styling for editing */
+.hotel-form-group {
+  margin-bottom: 1.5rem;
 }
 
-form label {
-  font-weight: bold;
+input[type="file"] {
+  margin-top: 0.5rem;
 }
 
-form input,
-form textarea,
-form select {
-  margin-bottom: 1rem;
+/* Description Styling */
+/* Description Styling */
+.hotel-description {
+  white-space: normal; /* Allow text to wrap */
+  word-wrap: break-word; /* Ensure long words break appropriately */
+  max-width: 100%; /* Ensure it takes the full width available */
 }
+

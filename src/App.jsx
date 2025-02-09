@@ -16,6 +16,8 @@ import { ToastContainer } from 'react-toastify'; // Import ToastContainer
 import 'react-toastify/dist/ReactToastify.css'; // Import toast styles
 import Contact from './contact/ContactForm';
 import HotelDes from './HotelDes/HotelDes';
+import BookingConfirmation from './BookConfirm/BookingConfirm';
+import BookNowPage from './BookingPage/BookingPage';
 
 function App() {
   return (
@@ -49,6 +51,8 @@ function AppContent() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/customer" element={<Customer />} />
           <Route path="/hotel/:id" element={<HotelDes />} />
+          <Route path="/booking-confirmation" element={<BookingConfirmation />} />
+          <Route path="/book/:hotelId" element={<BookNowPage />} /> {/* Booking Page Route */}
         </Routes>
       </div>
 

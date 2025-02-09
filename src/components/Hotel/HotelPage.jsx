@@ -149,16 +149,25 @@ const HotelPage = () => {
         </Carousel>
 
         <Card.Body>
-          <Card.Title className="fw-bold">{hotel.name}</Card.Title>
-          <Card.Text>
-            <small className="text-muted">
-              <i className="bi bi-geo-alt-fill"></i> {hotel.location}
-            </small>
-          </Card.Text>
-          <Card.Text>
-            <strong>Price:</strong> ${hotel.pricePerNight} per night
-          </Card.Text>
-        </Card.Body>
+  <Card.Title className="fw-bold">{hotel.name}</Card.Title>
+  <Card.Text>
+    <small className="text-muted">
+      <i className="bi bi-geo-alt-fill"></i> {hotel.location}
+    </small>
+  </Card.Text>
+  <Card.Text>
+    <strong>Price:</strong> ${hotel.pricePerNight} per night
+  </Card.Text>
+  <Button
+    variant="primary"
+    as={Link}
+    to={`/book/${hotel._id}`} // Link to the booking page for the specific hotel
+    className="w-100"
+  >
+    Book Now
+  </Button>
+</Card.Body>
+
       </Card>
     </Link>
   </Col>

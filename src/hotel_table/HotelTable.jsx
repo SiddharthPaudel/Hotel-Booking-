@@ -17,7 +17,9 @@ const HotelTable = () => {
   });
   const [imageFile, setImageFile] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [deletingHotel, setDeletingHotel] = useState(null);
 
   // Fetch hotels from backend
   useEffect(() => {
@@ -77,20 +79,27 @@ const HotelTable = () => {
       });
   };
 
-  // Handle Delete
+  // Open Delete Confirmation Modal
   const handleDelete = (hotelId) => {
-    if (window.confirm("Are you sure you want to delete this hotel?")) {
-      axios
-        .delete(`http://localhost:5000/api/hotels/${hotelId}`)
-        .then(() => {
-          setHotels(hotels.filter((hotel) => hotel._id !== hotelId));
-          toast.success("Hotel deleted successfully!");
-        })
-        .catch((error) => {
-          console.error("Error deleting hotel:", error);
-          toast.error("Failed to delete hotel!");
-        });
-    }
+    setDeletingHotel(hotelId);
+    setShowDeleteModal(true);
+  };
+
+  // Confirm Delete
+  const confirmDelete = () => {
+    axios
+      .delete(`http://localhost:5000/api/hotels/${deletingHotel}`)
+      .then(() => {
+        setHotels(hotels.filter((hotel) => hotel._id !== deletingHotel));
+        setShowDeleteModal(false);
+        setDeletingHotel(null);
+        toast.success("Hotel deleted successfully!");
+      })
+      .catch((error) => {
+        console.error("Error deleting hotel:", error);
+        toast.error("Failed to delete hotel!");
+        setShowDeleteModal(false);
+      });
   };
 
   // Filter hotels based on search query
@@ -101,26 +110,26 @@ const HotelTable = () => {
   );
 
   return (
-    <div className="container mt-4">
+    <div className="hotel-table-container mt-4">
       <h2 className="hotel-table-title">Hotel Details</h2>
 
       {/* Search Bar */}
-      <div className="search-bar-wrapper">
+      <div className="hotel-search-bar-wrapper">
         <input
           type="text"
-          className="search-input"
+          className="hotel-search-input"
           placeholder="Search hotels..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <Button className="search-button">
-          <FaSearch className="search-icon" />
+        <Button className="hotel-search-button">
+          <FaSearch className="hotel-search-icon" />
         </Button>
       </div>
 
       {/* Hotels Table */}
-      <div className="table-wrapper">
-        <Table striped bordered hover className="modern-table">
+      <div className="hotel-table-wrapper">
+        <Table striped bordered hover className="hotel-modern-table">
           <thead>
             <tr>
               <th>Name</th>
@@ -136,20 +145,21 @@ const HotelTable = () => {
               <tr key={hotel._id}>
                 <td>{hotel.name}</td>
                 <td>{hotel.location}</td>
-                <td>{hotel.description}</td>
+                <td className="hotel-description">{hotel.description}</td>
                 <td>{`$${hotel.pricePerNight}`}</td>
                 <td>{hotel.rooms}</td>
                 <td>
                   <Button
                     variant="outline-primary"
                     onClick={() => handleEdit(hotel)} // Edit hotel
-                    className="me-2"
+                    className="hotel-action-button me-2"
                   >
                     Edit
                   </Button>
                   <Button
                     variant="outline-danger"
                     onClick={() => handleDelete(hotel._id)} // Delete hotel
+                    className="hotel-action-button"
                   >
                     Delete
                   </Button>
@@ -247,6 +257,22 @@ const HotelTable = () => {
           </Button>
           <Button variant="primary" onClick={handleUpdate}>
             Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Delete Confirmation Modal */}
+      <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete Hotel</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to delete this hotel?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
+            No
+          </Button>
+          <Button variant="danger" onClick={confirmDelete}>
+            Yes
           </Button>
         </Modal.Footer>
       </Modal>

@@ -2,19 +2,26 @@ import { useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
 import { useAuth } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
-import ProfileModal from "../ProfileModal/ProfileModal"; // Import the new ProfileModal component
+import ProfileModal from "../ProfileModal/ProfileModal";
+import BookingModal from "../BookingModal/BookingModal";  // Import the modal for showing bookings
 import "./Header.css";
 import profile from "../assets/user.png";
 import Logout from "../assets/logout.png";
+import bookingIcon from "../assets/book_here.png"; // Add your booking icon image
 
 const Header = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
-  const [showModal, setShowModal] = useState(false); // Manage modal visibility
+  const [showModal, setShowModal] = useState(false); // Profile modal
+  const [showBookingModal, setShowBookingModal] = useState(false); // Booking modal
 
   const handleLogout = () => {
     logout();
     navigate("/login");
+  };
+
+  const handleBookingClick = () => {
+    setShowBookingModal(true); // Show booking modal
   };
 
   return (
@@ -22,6 +29,7 @@ const Header = () => {
       <header className="p-3 mb-3 bottom header-container">
         <div className="container">
           <div className="d-flex flex-wrap align-items-center justify-content-between">
+            {/* Brand Name */}
             <a
               href="/"
               className="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none"
@@ -32,6 +40,7 @@ const Header = () => {
               </h1>
             </a>
 
+            {/* Navigation Links */}
             <ul className="nav col-12 col-lg-auto mb-2 justify-content-center mb-md-0">
               <li>
                 <Link
@@ -80,6 +89,7 @@ const Header = () => {
               </li>
             </ul>
 
+            {/* User Profile & Booking Icon Section */}
             <div className="d-flex flex-wrap align-items-center justify-content-end">
               {user ? (
                 <div className="dropdown">
@@ -102,14 +112,13 @@ const Header = () => {
                     className="dropdown-menu dropdown-menu-end shadow-lg p-3 rounded-3"
                     aria-labelledby="dropdownMenuButton"
                   >
-                    {/* Profile Option with an Icon */}
                     <li>
                       <button
                         className="dropdown-item d-flex align-items-center"
                         onClick={() => setShowModal(true)}
                       >
-                         <img
-                          src={profile}// Replace with actual image URL
+                        <img
+                          src={profile}
                           alt="Profile"
                           className="me-2"
                           style={{
@@ -118,11 +127,10 @@ const Header = () => {
                             objectFit: "contain",
                           }}
                         />
-                     <small>{user.username}</small> 
+                        <small>{user.username}</small>
                       </button>
                     </li>
 
-                    {/* Username Display */}
                     <li>
                       <a className="dropdown-item text-muted">
                         <small>{user.email}</small>
@@ -133,14 +141,13 @@ const Header = () => {
                       <hr className="dropdown-divider" />
                     </li>
 
-                    {/* Logout Option with External Image */}
                     <li>
                       <button
                         className="dropdown-item d-flex align-items-center"
                         onClick={handleLogout}
                       >
                         <img
-                          src={Logout}// Replace with actual image URL
+                          src={Logout}
                           alt="Logout"
                           className="me-2"
                           style={{
@@ -167,13 +174,34 @@ const Header = () => {
                   </Link>
                 </div>
               )}
+
+              {/* Booking Icon - Visible if user is logged in */}
+              {user && (
+                <button
+                  className="btn p-0 ms-3"
+                  onClick={handleBookingClick}
+                  aria-label="View Bookings"
+                >
+                  <img
+                    src={bookingIcon}
+                    alt="Bookings"
+                    style={{ width: "30px", height: "30px" }}
+                  />
+                </button>
+              )}
             </div>
           </div>
         </div>
       </header>
 
-      {/* Pass props to ProfileModal */}
+      {/* Profile Modal */}
       <ProfileModal showModal={showModal} onClose={() => setShowModal(false)} />
+      
+      {/* Booking Modal */}
+      <BookingModal
+        showModal={showBookingModal}
+        onClose={() => setShowBookingModal(false)}
+      />
     </>
   );
 };
