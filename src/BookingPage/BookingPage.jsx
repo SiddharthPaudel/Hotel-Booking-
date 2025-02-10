@@ -8,7 +8,7 @@ import { useAuth } from "../context/AuthContext"; // Import the custom hook for 
 
 const BookingPage = () => {
   const { hotelId } = useParams();
-  const { customerId } = useAuth(); // Access the customerId from AuthContext
+  const { customerId, email: customerEmail } = useAuth(); // Access customerId and customerEmail from AuthContext
   const [hotel, setHotel] = useState({});
   const [checkInDate, setCheckInDate] = useState("");
   const [checkOutDate, setCheckOutDate] = useState("");
@@ -28,21 +28,23 @@ const BookingPage = () => {
 
   const handleBooking = async (e) => {
     e.preventDefault();
-
+  
     const pricePerRoom = hotel.pricePerNight;
     const calculatedTotalPrice = pricePerRoom * numRooms;
-
+  
     setTotalPrice(calculatedTotalPrice);
-
+  
     const bookingData = {
-      customerId: customerId, // Use the customerId from AuthContext
+      customerId,  // ✅ Send customer ID
+      customerEmail, // ✅ Send customer email from AuthContext
       hotelId: hotel._id,
+      hotelName: hotel.name, // ✅ Send hotel name
       checkInDate,
       checkOutDate,
       numRooms,
       totalPrice: calculatedTotalPrice,
     };
-
+  
     try {
       await axios.post("http://localhost:5000/api/booking", bookingData);
       toast.success("Booking successful!");
@@ -51,7 +53,7 @@ const BookingPage = () => {
       toast.error("Booking failed. Please try again.");
     }
   };
-
+  
   return (
     <Container className="py-4">
       <h2>Book Your Stay at {hotel.name}</h2>

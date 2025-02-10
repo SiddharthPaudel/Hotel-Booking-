@@ -44,8 +44,14 @@ export const AuthProvider = ({ children }) => {
 
   // ✅ Register user
   const register = (userData) => {
-    localStorage.setItem('user', JSON.stringify(userData));
-    setUser(userData);
+    const newUser = {
+      email: userData.email,
+      username: userData.username || userData.name || "User",
+      customerId: userData.customerId,
+      token: userData.token,
+    };
+    localStorage.setItem('user', JSON.stringify(newUser));
+    setUser(newUser);
   };
 
   // ✅ Login user and store details
@@ -53,8 +59,8 @@ export const AuthProvider = ({ children }) => {
     console.log("User data received at login:", userData); // Debugging log
   
     const updatedUser = {
-      email: userData.email,
-      username: userData.username || userData.name || "User", // Ensure correct username mapping
+      email: userData.email,  // ✅ Added email
+      username: userData.username || userData.name || "User",
       customerId: userData.customerId,
       token: userData.token,
     };
@@ -63,11 +69,10 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("user", JSON.stringify(updatedUser));
     console.log("User state after login:", updatedUser); // Debugging log
   };
-  
 
   // ✅ Logout and clear all authentication data
   const logout = () => {
-    localStorage.clear(); // Clears all stored authentication data
+    localStorage.clear();
     setUser(null);
   };
 
@@ -105,9 +110,10 @@ export const AuthProvider = ({ children }) => {
 
   const isLoggedIn = !!user;
   const customerId = user?.customerId || null;
+  const email = user?.email || null; // ✅ Added email
 
   return (
-    <AuthContext.Provider value={{ user, setUser, customerId, isLoggedIn, register, login, logout }}>
+    <AuthContext.Provider value={{ user, setUser, email, customerId, isLoggedIn, register, login, logout }}>
       {loading ? <div>Loading...</div> : children}
     </AuthContext.Provider>
   );
