@@ -7,7 +7,7 @@ const Booking = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/booking")
+      .get("http://localhost:5000/api/bookingc")
       .then((response) => {
         console.log("Fetched bookings:", response.data.data); // Debugging step
         setBookings(response.data.data); // Ensure you're setting the correct array

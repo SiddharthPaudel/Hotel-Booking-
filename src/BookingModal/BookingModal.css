@@ -1,0 +1,78 @@
+/* Modal Style */
+.booking-modal {
+    max-width: 700px;
+    width: 100%;
+    margin: 0 auto; /* Centers the modal horizontally */
+  }
+  
+  .booking-modal-header {
+    background-color: #f8f9fa;
+    border-bottom: none;
+    text-align: center;
+  }
+  
+  .booking-modal-title {
+    font-weight: bold;
+    font-size: 1.25rem;
+  }
+  
+  .booking-modal-body {
+    display: flex;
+    justify-content: center;  /* Ensures content is centered horizontally */
+    align-items: center;      /* Centers content vertically */
+    padding: 20px;
+  }
+  
+  .booking-modal-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;              /* Ensure the cards take full width */
+  }
+  
+  .booking-modal-card {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    background-color: #ffffff;
+    transition: transform 0.3s ease-in-out;
+    width: 100%;              /* Makes the card responsive */
+  }
+  
+  .booking-modal-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .booking-modal-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .booking-modal-card .card-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+  
+  .booking-modal-card p {
+    margin-bottom: 10px;
+  }
+  
+  .booking-modal-close-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .booking-modal-close-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Prevent Scroll When Modal is Open */
+  body.modal-open {
+    overflow: hidden;
+  }
+  
