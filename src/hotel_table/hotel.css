@@ -2,6 +2,7 @@
 .hotel-table-container {
   margin-top: 30px;
   font-family: Arial, sans-serif;
+  padding: 0 20px;
 }
 
 /* Title styling */
@@ -19,6 +20,9 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hotel-search-input {
@@ -39,6 +43,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .hotel-search-button:hover {
@@ -69,10 +74,12 @@
   text-align: left;
   font-size: 14px;
   color: #333;
+  vertical-align: middle; /* Ensure consistent alignment */
 }
 
 .hotel-modern-table th {
   background-color: #f4f4f4;
+  text-align: center;
 }
 
 .hotel-modern-table tr:hover {
@@ -84,11 +91,18 @@
   border-radius: 4px;
   padding: 8px 16px;
   transition: background-color 0.3s;
+  white-space: nowrap; /* Prevent buttons from wrapping */
 }
 
 .hotel-action-button:hover {
   cursor: pointer;
   background-color: #f0f0f0;
+}
+
+/* Ensure action buttons align properly */
+.hotel-modern-table td:last-child {
+  white-space: nowrap;
+  text-align: center;
 }
 
 /* Modal form styling for editing */
@@ -101,10 +115,9 @@ input[type="file"] {
 }
 
 /* Description Styling */
-/* Description Styling */
 .hotel-description {
   white-space: normal; /* Allow text to wrap */
   word-wrap: break-word; /* Ensure long words break appropriately */
-  max-width: 100%; /* Ensure it takes the full width available */
+  max-width: 300px; /* Limit width to prevent affecting layout */
+  overflow-wrap: break-word;
 }
-

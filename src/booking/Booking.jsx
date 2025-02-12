@@ -1,56 +1,85 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Table } from "react-bootstrap";
+import { Table, Badge, Container, Spinner } from "react-bootstrap";
+import './Booking.css'
 
 const Booking = () => {
   const [bookings, setBookings] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/bookingc")
+      .get("http://localhost:5000/api/booking")
       .then((response) => {
-        console.log("Fetched bookings:", response.data.data); // Debugging step
-        setBookings(response.data.data); // Ensure you're setting the correct array
+        setBookings(response.data?.data || []);
       })
       .catch((error) => {
-        console.error("Error fetching bookings:", error);
+        setError("Failed to fetch bookings.");
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, []);
 
   return (
-    <div>
-      <h2>All Bookings</h2>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Customer Email</th>
-            <th>Hotel Name</th>
-            <th>Check-in</th>
-            <th>Check-out</th>
-            <th>Rooms</th>
-            <th>Total Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          {bookings.length > 0 ? (
-            bookings.map((booking) => (
-              <tr key={booking._id}>
-                <td>{booking.customerEmail}</td>
-                <td>{booking.hotelName}</td>
-                <td>{new Date(booking.checkInDate).toLocaleDateString()}</td>
-                <td>{new Date(booking.checkOutDate).toLocaleDateString()}</td>
-                <td>{booking.numRooms}</td>
-                <td>${booking.totalPrice}</td>
+    <Container className="booking-container mt-4">
+      <h2 className="text-center mb-4">All Bookings</h2>
+
+      {loading ? (
+        <div className="d-flex justify-content-center">
+          <Spinner animation="border" variant="primary" />
+        </div>
+      ) : error ? (
+        <p className="text-danger text-center">{error}</p>
+      ) : bookings.length === 0 ? (
+        <p className="text-center">No bookings found.</p>
+      ) : (
+        <div className="table-responsive">
+          <Table className="modern-table" bordered hover responsive>
+            <thead>
+              <tr>
+                <th>Customer Email</th>
+                <th>Hotel Name</th>
+                <th>Check-in</th>
+                <th>Check-out</th>
+                <th>Rooms</th>
+                <th>Total Price</th>
+                <th>Payment Method</th>
+                <th>Status</th>
               </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="6">No bookings found</td>
-            </tr>
-          )}
-        </tbody>
-      </Table>
-    </div>
+            </thead>
+            <tbody>
+              {bookings.map((booking) => (
+                <tr key={booking._id}>
+                  <td>{booking.customerEmail}</td>
+                  <td>{booking.hotelName}</td>
+                  <td>{new Date(booking.checkInDate).toLocaleDateString()}</td>
+                  <td>{new Date(booking.checkOutDate).toLocaleDateString()}</td>
+                  <td>{booking.numRooms}</td>
+                  <td>${booking.totalPrice}</td>
+                  <td>{booking.paymentMethod || "Not Provided"}</td>
+                  <td>
+                    <Badge
+                      className="status-badge"
+                      bg={
+                        booking.status === "Confirmed"
+                          ? "success"
+                          : booking.status === "Pending"
+                          ? "warning"
+                          : "danger"
+                      }
+                    >
+                      {booking.status || "Pending"}
+                    </Badge>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
+      )}
+    </Container>
   );
 };
 

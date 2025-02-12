@@ -1,0 +1,47 @@
+/* Booking container */
+.booking-container {
+    font-family: "Arial", sans-serif;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  /* Modern table styling */
+  .modern-table {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .modern-table th {
+    background: #007bff;
+    color: #fff;
+    text-align: center;
+    padding: 12px;
+  }
+  
+  .modern-table td {
+    padding: 12px;
+    vertical-align: middle;
+  }
+  
+  .modern-table tr:hover {
+    background: #f1f1f1;
+  }
+  
+  /* Status Badge */
+  .status-badge {
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 20px;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .modern-table th,
+    .modern-table td {
+      font-size: 14px;
+      padding: 10px;
+    }
+  }
+  

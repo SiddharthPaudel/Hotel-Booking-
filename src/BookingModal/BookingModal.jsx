@@ -37,6 +37,30 @@ const BookingModal = ({ showModal, onClose, customerId }) => {
     }
   }, [customerId, showModal]);
 
+  const handleNewBooking = async (newBookingData) => {
+    try {
+      // Create a new booking object with default values (optimistic update)
+      const newBooking = {
+        hotelName: newBookingData.hotelName || "Newly Booked Hotel",
+        location: newBookingData.location || "Unknown Location",
+        totalPrice: newBookingData.totalPrice || 100,
+        paymentMethod: newBookingData.paymentMethod || "Credit Card",
+        checkInDate: newBookingData.checkInDate || new Date().toISOString(),
+        checkOutDate: newBookingData.checkOutDate || new Date().toISOString(),
+        imageUrl: newBookingData.imageUrl || "https://via.placeholder.com/100"
+      };
+
+      // Update UI instantly before sending API request
+      setBookedHotels((prevBookings) => [...prevBookings, newBooking]);
+
+      // Send API request to book the hotel
+      await axios.post("http://localhost:5000/api/booking", newBookingData);
+      console.log("Booking Successful!");
+    } catch (error) {
+      console.error("Error booking hotel:", error);
+    }
+  };
+
   return (
     <Modal show={showModal} onHide={onClose} centered>
       <Modal.Header closeButton>
@@ -44,16 +68,15 @@ const BookingModal = ({ showModal, onClose, customerId }) => {
       </Modal.Header>
       <Modal.Body>
         {loading ? (
-          <p>Loading...</p> // Show loading indicator until data is fetched
+          <p>Loading...</p>
         ) : error ? (
-          <p>{error}</p> // Show error if there was an issue
+          <p>{error}</p>
         ) : bookedHotels.length > 0 ? (
           <ul className="list-group">
             {bookedHotels.map((hotel, index) => (
               <li key={index} className="list-group-item">
                 <div className="d-flex justify-content-between align-items-center">
                   <div>
-                    {/* Display hotel image if available */}
                     {hotel.imageUrl && (
                       <img
                         src={hotel.imageUrl}
@@ -72,7 +95,6 @@ const BookingModal = ({ showModal, onClose, customerId }) => {
                         <strong>Payment Method: </strong>
                         {hotel.paymentMethod || "Not Available"}
                       </span>
-                      {/* Check-in and Check-out Dates */}
                       <span className="d-block">
                         <strong>Check-In: </strong>
                         {hotel.checkInDate
