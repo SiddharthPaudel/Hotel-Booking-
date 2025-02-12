@@ -16,7 +16,8 @@ import HotelDetails from "../hotel_details/hotel"; // Import other sections (e.g
 import HotelTable from "../hotel_table/HotelTable"
 import Booking from "../booking/Booking"; // Import other sections (e.g., Settings)
 import ContactTable from "../contact/ContactTable";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import "./dashboard.css"; // Import the CSS file
 
 // Register Chart.js components
@@ -32,14 +33,35 @@ ChartJS.register(
 
 const Dashboard = () => {
   const [activeSection, setActiveSection] = useState("charts"); // Default section (can be 'charts', 'customer', 'reports', etc.)
+  const [dashboardData, setDashboardData] = useState({
+    totalBookings: 0,
+    activeCustomers: 0,
+    totalRevenue: 0,
+    bookingData: [],
+    paymentMethods: [],
+  });
 
-  // Static Data for Line Chart (Hotel Bookings Over Time)
+  // Fetch dashboard data from the API
+  useEffect(() => {
+    const fetchDashboardData = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/dashboard"); // Update with your actual API endpoint
+        setDashboardData(response.data);
+      } catch (error) {
+        console.error("Error fetching dashboard data:", error);
+      }
+    };
+
+    fetchDashboardData();
+  }, []);
+
+  // Line Chart Data (Bookings over Time)
   const lineChartData = {
-    labels: ["January", "February", "March", "April", "May", "June"],
+    labels: dashboardData.bookingData.map((item) => item.month),
     datasets: [
       {
         label: "Hotel Bookings",
-        data: [50, 75, 60, 90, 120, 150],
+        data: dashboardData.bookingData.map((item) => item.count),
         backgroundColor: "rgba(75, 192, 192, 0.2)",
         borderColor: "rgba(75, 192, 192, 1)",
         borderWidth: 2,
@@ -47,22 +69,22 @@ const Dashboard = () => {
     ],
   };
 
-  const lineChartOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-  };
-
-  // Static Data for Pie Chart (Booking Sources)
+  // Pie Chart Data (Payment Methods)
   const pieChartData = {
-    labels: ["Online", "Agent", "Walk-in"],
+    labels: dashboardData.paymentMethods.map((method) => method.paymentMethod),
     datasets: [
       {
-        label: "Booking Sources",
-        data: [60, 25, 15],
+        label: "Payment Methods",
+        data: dashboardData.paymentMethods.map((method) => method.count),
         backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
         hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
       },
     ],
+  };
+
+  const lineChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
   };
 
   const pieChartOptions = {
@@ -85,7 +107,7 @@ const Dashboard = () => {
               <Row className="p-4">
                 <Col>
                   <h3>Welcome to Dashboard</h3>
-                   <p>Hi, Siddhartha</p>
+                  <p>Hi, Siddhartha</p>
                 </Col>
               </Row>
 
@@ -94,19 +116,19 @@ const Dashboard = () => {
                 <Col xs={12} md={4} className="mb-3 mb-md-0">
                   <div className="summary-box bg-light-red">
                     <h5>Total Bookings</h5>
-                    <p>150</p>
+                    <p>{dashboardData.totalBookings}</p>
                   </div>
                 </Col>
                 <Col xs={12} md={4} className="mb-3 mb-md-0">
                   <div className="summary-box bg-light-yellow">
                     <h5>Active Customers</h5>
-                    <p>75</p>
+                    <p>{dashboardData.activeCustomers}</p>
                   </div>
                 </Col>
                 <Col xs={12} md={4}>
                   <div className="summary-box bg-light-pink">
                     <h5>Revenue</h5>
-                    <p>$12,000</p>
+                    <p>${dashboardData.totalRevenue}</p>
                   </div>
                 </Col>
               </Row>
