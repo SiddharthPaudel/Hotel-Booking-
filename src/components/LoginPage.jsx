@@ -36,10 +36,10 @@ const LoginPage = () => {
         const data = await response.json();
   
         // Extract necessary data from the response
-        const { email, token, customerId, name } = data;
+        const { email, token, customerId, username } = data;
   
         // Store token, customerId, and user data in context
-        login({ email, token, customerId, name });
+        login({ email, token, customerId, username });
   
         // Persist customerId and token in localStorage
         localStorage.setItem('customerId', customerId);
@@ -48,13 +48,15 @@ const LoginPage = () => {
         toast.success('Login successful!', { position: 'top-center', autoClose: 3000 });
         setTimeout(() => navigate('/'), 3000);
       } else {
-        toast.error('Invalid email or password', { position: 'top-center', autoClose: 3000 });
+        const errorData = await response.json();
+        toast.error(errorData.error || 'Invalid email or password', { position: 'top-center', autoClose: 3000 });
       }
     } catch (error) {
       console.error('Login error:', error);
       toast.error('Something went wrong. Please try again later.', { position: 'top-center', autoClose: 3000 });
     }
   };
+  
   
 
   return (
