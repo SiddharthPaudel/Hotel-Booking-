@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Table, Button, Form, Modal, Row, Col } from "react-bootstrap";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { FaSearch } from "react-icons/fa"; // Importing search icon from react-icons
+import { FaSearch } from "react-icons/fa"; 
 import './hotel.css';
 
 const HotelTable = () => {

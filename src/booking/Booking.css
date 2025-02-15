@@ -1,47 +1,72 @@
-/* Booking container */
-.booking-container {
-    font-family: "Arial", sans-serif;
-    background: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-  }
-  
-  /* Modern table styling */
-  .modern-table {
-    background: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  
-  .modern-table th {
-    background: #007bff;
-    color: #fff;
-    text-align: center;
-    padding: 12px;
-  }
-  
-  .modern-table td {
-    padding: 12px;
-    vertical-align: middle;
-  }
-  
-  .modern-table tr:hover {
-    background: #f1f1f1;
-  }
-  
-  /* Status Badge */
-  .status-badge {
-    padding: 8px 12px;
+/* Global Styles */
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: #f4f6f9;
+}
+
+/* Booking Page Container */
+.booking-page-container {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Search Bar */
+.booking-search-input {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  transition: border 0.3s ease;
+}
+
+.booking-search-input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Table Styles */
+.booking-page-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.booking-page-table th,
+.booking-page-table td {
+  padding: 12px 16px;
+  text-align: left;
+}
+
+.booking-page-table th {
+  background-color: #007bff;
+  color: white;
+}
+
+.booking-page-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.booking-page-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Booking Status Badge */
+.booking-status-badge {
+  font-size: 12px;
+  border-radius: 12px;
+  padding: 6px 12px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .booking-page-table th,
+  .booking-page-table td {
+    padding: 10px;
     font-size: 14px;
-    border-radius: 20px;
   }
-  
-  /* Responsive design */
-  @media (max-width: 768px) {
-    .modern-table th,
-    .modern-table td {
-      font-size: 14px;
-      padding: 10px;
-    }
-  }
-  
+}

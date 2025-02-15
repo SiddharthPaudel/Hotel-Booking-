@@ -1,4 +1,10 @@
 /* Styling for the entire table container */
+
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: #f4f6f9;
+}
 .hotel-table-container {
   margin-top: 30px;
   font-family: Arial, sans-serif;
@@ -74,7 +80,7 @@
   text-align: left;
   font-size: 14px;
   color: #333;
-  vertical-align: middle; /* Ensure consistent alignment */
+  vertical-align: middle;
 }
 
 .hotel-modern-table th {
@@ -91,7 +97,7 @@
   border-radius: 4px;
   padding: 8px 16px;
   transition: background-color 0.3s;
-  white-space: nowrap; /* Prevent buttons from wrapping */
+  white-space: nowrap;
 }
 
 .hotel-action-button:hover {
@@ -116,8 +122,8 @@ input[type="file"] {
 
 /* Description Styling */
 .hotel-description {
-  white-space: normal; /* Allow text to wrap */
-  word-wrap: break-word; /* Ensure long words break appropriately */
-  max-width: 300px; /* Limit width to prevent affecting layout */
+  white-space: normal;
+  word-wrap: break-word;
+  max-width: 300px;
   overflow-wrap: break-word;
 }
