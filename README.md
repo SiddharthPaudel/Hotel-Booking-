@@ -1,23 +1,46 @@
 🏨 Quick Stay – Hotel Booking Website (MERN Stack)
-Quick Stay is a fully responsive Hotel Booking Web Application built using the MERN Stack (MongoDB, Express.js, React.js, Node.js). It allows users to explore hotels, check real-time room availability, make bookings, and securely complete payments. The platform also includes an admin dashboard for managing hotels, rooms, and reservations—making it a complete solution for both users and hotel administrators.
+Quick Stay is a fully responsive Hotel Booking Web Application built using the MERN Stack (MongoDB, Express.js, React.js, Node.js). It allows users to:
 
-🏛️ For Users
+Explore hotels
+
+Check real-time room availability
+
+Make bookings
+
+Securely complete payments
+
+Additionally, the platform includes an Admin Dashboard for managing hotels, rooms, and reservations, making it a complete solution for both users and hotel administrators.
+
+🏛️ Features for Users
 🏠 Home Page – Browse available hotels with photos, room details, pricing, and amenities.
+
 🔍 Hotel Search & Filters – Search hotels and filter results based on location, price, and availability.
+
 📅 Book Rooms – Choose check-in/check-out dates, select room types, and make bookings with real-time availability.
+
 👤 User Profile – View and update user information such as name, email, and phone number.
+
 🔒 Change Password – Update your password securely from the profile settings.
+
 🆘 Forgot Password – Reset your password using email verification.
+
 💳 Payment Integration – Complete bookings with secure online payment (Stripe/Razorpay supported).
+
 📩 Contact Support – Send inquiries or messages directly to the support team.
+
 🚫 Unauthorized Access Handling – Users attempting to access restricted admin pages are redirected appropriately.
+
 🔑 Login & Register – Secure user registration and authentication with JWT.
 
-🛠️ For Admin
+🛠️ Features for Admin
 📊 Admin Dashboard – Visual overview of hotel bookings, room availability, and user statistics.
+
 🏨 Hotel Management – Add, update, or remove hotel listings, room categories, and room availability.
+
 📦 Booking Management – View all bookings, cancel or confirm reservations, and monitor status.
+
 👥 User Management – View all registered users, update roles, or remove users if needed.
+
 📩 Contact Request Management – Manage messages or inquiries submitted through the contact form.
 
 ⚡ Fully Responsive
@@ -61,6 +84,4 @@ If you have any questions, suggestions, or would like to connect, feel free to r
 
 📧 Email: psiddhartha62@gmail.com
 
-📽️ Project Demo:https://www.youtube.com/watch?v=-dM9pdSwmjA
-
-
+📽️ Project Demo: Watch on YouTube
